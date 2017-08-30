@@ -14,6 +14,13 @@
 
 %global  with_webp  1
 
+# requested by https://bugzilla.redhat.com/1468338
+# this break gdimagefile/gdnametest:
+#   gdimagefile/gdnametest.c:122: 255 pixels different on /tmp/gdtest.CrpdIb/img.gif
+#   gdimagefile/gdnametest.c:122: 255 pixels different on /tmp/gdtest.CrpdIb/img.GIF
+#   FAIL gdimagefile/gdnametest (exit status: 2)
+%global  with_liq   0
+
 Summary:       A graphics library for quick creation of PNG or JPEG images
 %if 0%{?fedora} >= 20
 Name:          gd
@@ -43,6 +50,9 @@ BuildRequires: libpng-devel
 BuildRequires: libtiff-devel
 %if %{with_webp}
 BuildRequires: libwebp-devel
+%endif
+%if %{with_liq}
+BuildRequires: libimagequant-devel
 %endif
 BuildRequires: libX11-devel
 BuildRequires: libXpm-devel
