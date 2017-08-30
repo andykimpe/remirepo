@@ -1,0 +1,1191 @@
+<!-- kind:binary;verdict:incompatible;affected:10.7;added:74;removed:16;type_problems_high:0;type_problems_medium:0;type_problems_low:11;interface_problems_high:0;interface_problems_medium:0;interface_problems_low:1;changed_constants:1;tool_version:1.98.8 -->
+<!-- kind:source;verdict:compatible;affected:0;added:73;removed:0;type_problems_high:0;type_problems_medium:0;type_problems_low:9;interface_problems_high:0;interface_problems_medium:0;interface_problems_low:0;changed_constants:7;tool_version:1.98.8 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="libgd, compatibility, API, report" />
+    <meta name="description" content="Compatibility report for the libgd library between 2.0.35 and 2.1.0 versions" />
+    <title>
+        libgd: 2.0.35 to 2.1.0 compatibility report
+    </title>
+    <style type="text/css">
+    body {
+    font-family:Arial, sans-serif;
+    color:Black;
+    font-size:14px;
+}
+hr {
+    color:Black;
+    background-color:Black;
+    height:1px;
+    border:0;
+}
+h1 {
+    margin-bottom:0px;
+    padding-bottom:0px;
+    font-size:26px;
+}
+h2 {
+    margin-bottom:0px;
+    padding-bottom:0px;
+    font-size:20px;
+    white-space:nowrap;
+}
+span.section {
+    font-weight:bold;
+    cursor:pointer;
+    font-size:16px;
+    color:#003E69;
+    white-space:nowrap;
+    margin-left:5px;
+}
+span.new_sign {
+    font-weight:bold;
+    margin-left:26px;
+    font-size:16px;
+    color:#003E69;
+}
+span.new_sign_lbl {
+    margin-left:28px;
+    font-size:14px;
+    color:Black;
+}
+span:hover.section {
+    color:#336699;
+}
+span.section_affected {
+    cursor:pointer;
+    margin-left:7px;
+    padding-left:15px;
+    font-size:14px;
+    color:#cc3300;
+}
+span.section_info {
+    cursor:pointer;
+    margin-left:7px;
+    padding-left:15px;
+    font-size:14px;
+    color:Black;
+}
+span.extendable {
+    font-weight:100;
+    font-size:16px;
+}
+span.h_name {
+    color:#cc3300;
+    font-size:14px;
+    font-weight:bold;
+}
+div.h_list {
+    font-size:15px;
+    padding-left:5px;
+}
+span.ns {
+    color:#408080;
+    font-size:15px;
+}
+div.lib_list {
+    font-size:15px;
+    padding-left:5px;
+}
+span.lib_name {
+    color:Green;
+    font-size:14px;
+    font-weight:bold;
+}
+span.iname {
+    font-weight:bold;
+    font-size:16px;
+    color:#003E69;
+    margin-left:5px;
+}
+span.iname_b {
+    font-weight:bold;
+    font-size:15px;
+}
+span.iname_a {
+    color:#333333;
+    font-weight:bold;
+    font-size:15px;
+}
+span.sym_p {
+    font-weight:normal;
+    white-space:normal;
+}
+div.affect {
+    padding-left:15px;
+    padding-bottom:4px;
+    font-size:14px;
+    font-style:italic;
+    line-height:13px;
+}
+div.affected {
+    padding-left:30px;
+    padding-top:5px;
+}
+table.ptable {
+    border-collapse:collapse;
+    border:1px outset black;
+    line-height:16px;
+    margin-left:15px;
+    margin-top:3px;
+    margin-bottom:3px;
+    width:900px;
+}
+table.ptable td {
+    border:1px solid gray;
+    padding: 3px;
+}
+table.vtable {
+    border-collapse:collapse;
+    border:1px outset black;
+    line-height:16px;
+    margin-left:30px;
+    margin-top:10px;
+    width:100px;
+}
+table.vtable td {
+    border:1px solid gray;
+    white-space:nowrap;
+    padding: 3px;
+}
+table.ptable th, table.vtable th {
+    background-color:#eeeeee;
+    font-weight:bold;
+    color:#333333;
+    font-family:Verdana, Arial;
+    font-size:13px;
+    border:1px solid gray;
+    text-align:center;
+    vertical-align:top;
+    white-space:nowrap;
+    padding: 3px;
+}
+table.summary {
+    border-collapse:collapse;
+    border:1px outset black;
+}
+table.summary th {
+    background-color:#eeeeee;
+    font-weight:100;
+    text-align:left;
+    font-size:15px;
+    white-space:nowrap;
+    border:1px inset gray;
+    padding: 3px;
+}
+table.summary td {
+    text-align:right;
+    font-size:16px;
+    white-space:nowrap;
+    border:1px inset gray;
+    padding: 3px 5px 3px 10px;
+}
+table.code_view {
+    cursor:text;
+    margin-top:7px;
+    margin-left:15px;
+    font-family:Monaco, Consolas, 'DejaVu Sans Mono', 'Droid Sans Mono', Monospace;
+    font-size:14px;
+    padding:10px;
+    border:1px solid #e0e8e5;
+    color:#444444;
+    background-color:#eff3f2;
+    overflow:auto;
+}
+table.code_view td {
+    padding-left:15px;
+    text-align:left;
+    white-space:nowrap;
+}
+span.mangled {
+    padding-left:15px;
+    font-size:14px;
+    cursor:text;
+    color:#444444;
+}
+span.sym_ver {
+    color:#333333;
+    white-space:nowrap;
+    font-family:"DejaVu Sans Mono", Monospace;
+}
+span.attr {
+    color:#333333;
+    font-weight:100;
+}
+span.color_p {
+    font-style:italic;
+    color:Brown;
+}
+span.param {
+    font-style:italic;
+}
+span.focus_p {
+    font-style:italic;
+    color:Red;
+}
+span.ttype {
+    font-weight:100;
+}
+span.nowrap {
+    white-space:nowrap;
+}
+span.value {
+    white-space:nowrap;
+    font-weight:bold;
+}
+td.passed {
+    background-color:#CCFFCC;
+}
+td.warning {
+    background-color:#F4F4AF;
+}
+td.failed {
+    background-color:#FFCCCC;
+}
+td.new {
+    background-color:#C6DEFF;
+}
+.tabset {
+    float:left;
+}
+a.tab {
+    border:1px solid #AAA;
+    float:left;
+    margin:0px 5px -1px 0px;
+    padding:3px 5px 3px 5px;
+    position:relative;
+    font-size:14px;
+    background-color:#DDD;
+    text-decoration:none;
+    color:Black;
+}
+a.disabled:hover
+{
+    color:Black;
+    background:#EEE;
+}
+a.active:hover
+{
+    color:Black;
+    background:White;
+}
+a.active {
+    border-bottom-color:White;
+    background-color:White;
+}
+div.tab {
+    border:1px solid #AAA;
+    padding:0 7px 0 12px;
+    width:97%;
+    clear:both;
+}
+    </style>
+    <script type="text/javascript" language="JavaScript">
+    <!--
+    function showContent(header, id)
+{
+    e = document.getElementById(id);
+    if(e.style.display == 'none')
+    {
+        e.style.display = 'block';
+        e.style.visibility = 'visible';
+        header.innerHTML = header.innerHTML.replace(/\[[^0-9 ]\]/gi,"[&minus;]");
+    }
+    else
+    {
+        e.style.display = 'none';
+        e.style.visibility = 'hidden';
+        header.innerHTML = header.innerHTML.replace(/\[[^0-9 ]\]/gi,"[+]");
+    }
+}
+function initTabs()
+{
+    var url = window.location.href;
+    if(url.indexOf('_Source_')!=-1 || url.indexOf('#Source')!=-1)
+    {
+        var tab1 = document.getElementById('BinaryID');
+        var tab2 = document.getElementById('SourceID');
+        tab1.className='tab disabled';
+        tab2.className='tab active';
+    }
+    var sets = document.getElementsByTagName('div');
+    for (var i = 0; i < sets.length; i++)
+    {
+        if (sets[i].className.indexOf('tabset') != -1)
+        {
+            var tabs = [];
+            var links = sets[i].getElementsByTagName('a');
+            for (var j = 0; j < links.length; j++)
+            {
+                if (links[j].className.indexOf('tab') != -1)
+                {
+                    tabs.push(links[j]);
+                    links[j].tabs = tabs;
+                    var tab = document.getElementById(links[j].href.substr(links[j].href.indexOf('#') + 1));
+                    //reset all tabs on start
+                    if (tab)
+                    {
+                        if (links[j].className.indexOf('active')!=-1) {
+                            tab.style.display = 'block';
+                        }
+                        else {
+                            tab.style.display = 'none';
+                        }
+                    }
+                    links[j].onclick = function()
+                    {
+                        var tab = document.getElementById(this.href.substr(this.href.indexOf('#') + 1));
+                        if (tab)
+                        {
+                            //reset all tabs before change
+                            for (var k = 0; k < this.tabs.length; k++)
+                            {
+                                document.getElementById(this.tabs[k].href.substr(this.tabs[k].href.indexOf('#') + 1)).style.display = 'none';
+                                this.tabs[k].className = this.tabs[k].className.replace('active', 'disabled');
+                            }
+                            this.className = 'tab active';
+                            tab.style.display = 'block';
+                            // window.location.hash = this.id.replace('ID', '');
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if(url.indexOf('#')!=-1) {
+        location.href=location.href;
+    }
+}
+if (window.addEventListener) window.addEventListener('load', initTabs, false);
+else if (window.attachEvent) window.attachEvent('onload', initTabs);
+    -->
+    </script>
+    </head><body><a name='Source'></a><a name='Binary'></a><a name='Top'></a><h1><span class='nowrap'>API compatibility report for the <span style='color:Blue;'>libgd</span> library</span> <span class='nowrap'>&#160;between <span style='color:Red;'>2.0.35</span> and <span style='color:Red;'>2.1.0</span> versions on <span style='color:Blue;'>x86_64</span></span></h1>
+
+            <br/><div class='tabset'>
+            <a id='BinaryID' href='#BinaryTab' class='tab active'>Binary<br/>Compatibility</a>
+            <a id='SourceID' href='#SourceTab' style='margin-left:3px' class='tab disabled'>Source<br/>Compatibility</a>
+            </div><div id='BinaryTab' class='tab'>
+<h2>Test Info</h2><hr/>
+<table class='summary'>
+<tr><th>Library Name</th><td>libgd</td></tr>
+<tr><th>Version #1</th><td>2.0.35</td></tr>
+<tr><th>Version #2</th><td>2.1.0</td></tr>
+<tr><th>CPU Type</th><td>x86_64</td></tr>
+<tr><th>GCC Version</th><td>4.7.2</td></tr>
+<tr><th>Subject</th><td width='150px'>Binary Compatibility</td></tr>
+</table>
+<h2>Test Results</h2><hr/>
+<table class='summary'><tr><th>Total Header Files</th><td><a href='#Headers' style='color:Blue;'>10</a></td></tr>
+<tr><th>Total Shared Libraries</th><td><a href='#Libs' style='color:Blue;'>1</a></td></tr>
+<tr><th>Total Symbols / Types</th><td>149 / 68</td></tr>
+<tr><th>Verdict</th><td><span style='color:Red;'><b>Incompatible<br/>(10.7%)</b></span></td></tr>
+</table>
+<h2>Problem Summary</h2><hr/>
+<table class='summary'><tr><th></th><th style='text-align:center;'>Severity</th><th style='text-align:center;'>Count</th></tr><tr><th>Added Symbols</th><td>-</td><td class='new'><a href='#Binary_Added' style='color:Blue;'>74</a></td></tr>
+<tr><th>Removed Symbols</th><td>High</td><td class='failed'><a href='#Binary_Removed' style='color:Blue;'>16</a></td></tr>
+<tr><th rowspan='3'>Problems with<br/>Data Types</th><td>High</td><td>0</td></tr>
+<tr><td>Medium</td><td>0</td></tr>
+<tr><td>Low</td><td class='warning'><a href='#Type_Binary_Problems_Low' style='color:Blue;'>11</a></td></tr>
+<tr><th rowspan='3'>Problems with<br/>Symbols</th><td>High</td><td>0</td></tr>
+<tr><td>Medium</td><td>0</td></tr>
+<tr><td>Low</td><td class='warning'><a href='#Symbol_Binary_Problems_Low' style='color:Blue;'>1</a></td></tr>
+<tr><th>Problems with<br/>Constants</th><td>Low</td><td class='warning'><a href='#Constant_Binary_Problems_Low' style='color:Blue;'>1</a></td></tr>
+<tr><th>Other Changes<br/>in Constants</th><td>-</td><td class='passed'><a href='#Other_Binary_Changes_In_Constants' style='color:Blue;'>7</a></td></tr>
+</table>
+
+<a name='Binary_Added'></a><h2>Added Symbols (74)</h2><hr/>
+<span class='h_name'>gd.h</span>, <span class='lib_name'>libgd.so.3.0.0</span><br/>
+<span class="iname">gdAffineApplyToPointF&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdPointFPtr <span class='color_p'>dst</span>,</span> gdPointFPtr const <span class='color_p'>src</span>, <span class='nowrap'>double const* <span class='color_p'>affine</span> )</span></span></span><br/>
+<span class="iname">gdAffineConcat&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> double const* <span class='color_p'>m1</span>, <span class='nowrap'>double const* <span class='color_p'>m2</span> )</span></span></span><br/>
+<span class="iname">gdAffineEqual&#160;<span class='sym_p'>(&#160;double const* <span class='color_p'>matrix1</span>, <span class='nowrap'>double const* <span class='color_p'>matrix2</span> )</span></span></span><br/>
+<span class="iname">gdAffineExpansion&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double const* <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdAffineFlip&#160;<span class='sym_p'>(&#160;double* <span class='color_p'>dst_affine</span>, double const* <span class='color_p'>src_affine</span>, int const <span class='color_p'>flip_h</span>, <span class='nowrap'>int const <span class='color_p'>flip_v</span> )</span></span></span><br/>
+<span class="iname">gdAffineIdentity&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span> )</span></span></span><br/>
+<span class="iname">gdAffineInvert&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> <span class='nowrap'>double const* <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdAffineRectilinear&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double const* <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdAffineRotate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> <span class='nowrap'>double const <span class='color_p'>angle</span> )</span></span></span><br/>
+<span class="iname">gdAffineScale&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> double const <span class='color_p'>scale_x</span>, <span class='nowrap'>double const <span class='color_p'>scale_y</span> )</span></span></span><br/>
+<span class="iname">gdAffineShearHorizontal&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> <span class='nowrap'>double const <span class='color_p'>angle</span> )</span></span></span><br/>
+<span class="iname">gdAffineShearVertical&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> <span class='nowrap'>double const <span class='color_p'>angle</span> )</span></span></span><br/>
+<span class="iname">gdAffineTranslate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> double const <span class='color_p'>offset_x</span>, <span class='nowrap'>double const <span class='color_p'>offset_y</span> )</span></span></span><br/>
+<span class="iname">gdClearErrorMethod&#160;<span class='sym_p'>(&#160;)</span></span><br/>
+<span class="iname">gdImageBmp&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='color_p'>outFile</span>,</span> <span class='nowrap'>int <span class='color_p'>compression</span> )</span></span></span><br/>
+<span class="iname">gdImageBmpCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>gdIOCtxPtr <span class='color_p'>out</span>,</span> <span class='nowrap'>int <span class='color_p'>compression</span> )</span></span></span><br/>
+<span class="iname">gdImageBmpPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int* <span class='color_p'>size</span>,</span> <span class='nowrap'>int <span class='color_p'>compression</span> )</span></span></span><br/>
+<span class="iname">gdImageBrightness&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span>,</span> <span class='nowrap'>int <span class='color_p'>brightness</span> )</span></span></span><br/>
+<span class="iname">gdImageColor&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span>,</span> <span class='nowrap'>int const <span class='color_p'>red</span>,</span> <span class='nowrap'>int const <span class='color_p'>green</span>,</span> <span class='nowrap'>int const <span class='color_p'>blue</span>,</span> <span class='nowrap'>int const <span class='color_p'>alpha</span> )</span></span></span><br/>
+<span class="iname">gdImageColorReplace&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>src</span>,</span> <span class='nowrap'>int <span class='color_p'>dst</span> )</span></span></span><br/>
+<span class="iname">gdImageColorReplaceArray&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>len</span>,</span> <span class='nowrap'>int* <span class='color_p'>src</span>,</span> <span class='nowrap'>int* <span class='color_p'>dst</span> )</span></span></span><br/>
+<span class="iname">gdImageColorReplaceCallback&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>gdCallbackImageColor <span class='color_p'>callback</span> )</span></span></span><br/>
+<span class="iname">gdImageColorReplaceThreshold&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>src</span>,</span> <span class='nowrap'>int <span class='color_p'>dst</span>,</span> <span class='nowrap'>float <span class='color_p'>threshold</span> )</span></span></span><br/>
+<span class="iname">gdImageContrast&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span>,</span> <span class='nowrap'>double <span class='color_p'>contrast</span> )</span></span></span><br/>
+<span class="iname">gdImageConvolution&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span>,</span> float[3]* <span class='color_p'>filter</span>, float <span class='color_p'>filter_div</span>, <span class='nowrap'>float <span class='color_p'>offset</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromBmp&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='color_p'>inFile</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromBmpCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='color_p'>infile</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromBmpPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='color_p'>size</span>,</span> <span class='nowrap'>void* <span class='color_p'>data</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromTga&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='color_p'>fp</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromTgaCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='color_p'>ctx</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromTgaPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='color_p'>size</span>,</span> <span class='nowrap'>void* <span class='color_p'>data</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromTiff&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='color_p'>inFile</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromTiffCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='color_p'>infile</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromTiffPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='color_p'>size</span>,</span> <span class='nowrap'>void* <span class='color_p'>data</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromWebp&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='color_p'>inFile</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromWebpCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='color_p'>infile</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromWebpPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='color_p'>size</span>,</span> <span class='nowrap'>void* <span class='color_p'>data</span> )</span></span></span><br/>
+<span class="iname">gdImageCrop&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span>,</span> <span class='nowrap'>struct gdRect const* <span class='color_p'>crop</span> )</span></span></span><br/>
+<span class="iname">gdImageCropAuto&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>unsigned int const <span class='color_p'>mode</span> )</span></span></span><br/>
+<span class="iname">gdImageCropThreshold&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> unsigned int const <span class='color_p'>color</span>, <span class='nowrap'>float const <span class='color_p'>threshold</span> )</span></span></span><br/>
+<span class="iname">gdImageEdgeDetectQuick&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdImageEllipse&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>cx</span>,</span> <span class='nowrap'>int <span class='color_p'>cy</span>,</span> <span class='nowrap'>int <span class='color_p'>w</span>,</span> <span class='nowrap'>int <span class='color_p'>h</span>,</span> <span class='nowrap'>int <span class='color_p'>color</span> )</span></span></span><br/>
+<span class="iname">gdImageEmboss&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span> )</span></span></span><br/>
+<span class="iname">gdImageFlipBoth&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span> )</span></span></span><br/>
+<span class="iname">gdImageFlipHorizontal&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span> )</span></span></span><br/>
+<span class="iname">gdImageFlipVertical&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span> )</span></span></span><br/>
+<span class="iname">gdImageGaussianBlur&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span> )</span></span></span><br/>
+<span class="iname">gdImageGrayScale&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdImageMeanRemoval&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span> )</span></span></span><br/>
+<span class="iname">gdImageNegate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdImageNeuQuant&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> int const <span class='color_p'>max_color</span>, <span class='nowrap'>int <span class='color_p'>sample_factor</span> )</span></span></span><br/>
+<span class="iname">gdImagePaletteToTrueColor&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdImagePixelate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>block_size</span>,</span> <span class='nowrap'>unsigned int const <span class='color_p'>mode</span> )</span></span></span><br/>
+<span class="iname">gdImageRotateInterpolated&#160;<span class='sym_p'>(&#160;gdImagePtr const <span class='color_p'>src</span>, float const <span class='color_p'>angle</span>, <span class='nowrap'>int <span class='color_p'>bgcolor</span> )</span></span></span><br/>
+<span class="iname">gdImageScale&#160;<span class='sym_p'>(&#160;gdImagePtr const <span class='color_p'>src</span>, unsigned int const <span class='color_p'>new_width</span>, <span class='nowrap'>unsigned int const <span class='color_p'>new_height</span> )</span></span></span><br/>
+<span class="iname">gdImageScatter&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>sub</span>,</span> <span class='nowrap'>int <span class='color_p'>plus</span> )</span></span></span><br/>
+<span class="iname">gdImageScatterColor&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>sub</span>,</span> <span class='nowrap'>int <span class='color_p'>plus</span>,</span> <span class='nowrap'>int* <span class='color_p'>colors</span>,</span> <span class='nowrap'>unsigned int <span class='color_p'>num_colors</span> )</span></span></span><br/>
+<span class="iname">gdImageScatterEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>gdScatterPtr <span class='color_p'>s</span> )</span></span></span><br/>
+<span class="iname">gdImageSelectiveBlur&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdImageSetResolution&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> unsigned int const <span class='color_p'>res_x</span>, <span class='nowrap'>unsigned int const <span class='color_p'>res_y</span> )</span></span></span><br/>
+<span class="iname">gdImageSmooth&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>float <span class='color_p'>weight</span> )</span></span></span><br/>
+<span class="iname">gdImageTiff&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='color_p'>outFile</span> )</span></span></span><br/>
+<span class="iname">gdImageTiffCtx&#160;<span class='sym_p'>(&#160;gdImagePtr <span class='color_p'>image</span>, <span class='nowrap'>gdIOCtx* <span class='color_p'>out</span> )</span></span></span><br/>
+<span class="iname">gdImageTiffPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int* <span class='color_p'>size</span> )</span></span></span><br/>
+<span class="iname">gdImageTrueColorToPaletteSetMethod&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>method</span>,</span> <span class='nowrap'>int <span class='color_p'>speed</span> )</span></span></span><br/>
+<span class="iname">gdImageTrueColorToPaletteSetQuality&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>min_quality</span>,</span> <span class='nowrap'>int <span class='color_p'>max_quality</span> )</span></span></span><br/>
+<span class="iname">gdImageWebp&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='color_p'>outFile</span> )</span></span></span><br/>
+<span class="iname">gdImageWebpCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> gdIOCtx* <span class='color_p'>outfile</span>, <span class='nowrap'>int <span class='color_p'>quantization</span> )</span></span></span><br/>
+<span class="iname">gdImageWebpEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='color_p'>outFile</span>,</span> <span class='nowrap'>int <span class='color_p'>quantization</span> )</span></span></span><br/>
+<span class="iname">gdImageWebpPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int* <span class='color_p'>size</span> )</span></span></span><br/>
+<span class="iname">gdImageWebpPtrEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int* <span class='color_p'>size</span>,</span> <span class='nowrap'>int <span class='color_p'>quantization</span> )</span></span></span><br/>
+<span class="iname">gdSetErrorMethod&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdErrorMethod <span class='color_p'>p1</span> )</span></span></span><br/>
+<span class="iname">gdTransformAffineCopy&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>dst</span>,</span> <span class='nowrap'>int <span class='color_p'>dst_x</span>,</span> <span class='nowrap'>int <span class='color_p'>dst_y</span>,</span> gdImagePtr const <span class='color_p'>src</span>, gdRectPtr <span class='color_p'>src_region</span>, <span class='nowrap'>double const* <span class='color_p'>affine</span> )</span></span></span><br/>
+<span class="iname">gdTransformAffineGetImage&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr* <span class='color_p'>dst</span>,</span> gdImagePtr const <span class='color_p'>src</span>, gdRectPtr <span class='color_p'>src_area</span>, <span class='nowrap'>double const* <span class='color_p'>affine</span> )</span></span></span><br/>
+<br/>
+<a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<a name='Binary_Removed'></a><a name='Binary_Withdrawn'></a><h2>Removed Symbols (16)</h2><hr/>
+<span class='h_name'>gd_io.h</span>, <span class='lib_name'>libgd.so.2.0.0</span><br/>
+<span class="iname">gdGetBuf&#160;<span class='sym_p'>(&#160;<span class='nowrap'>void* <span class='color_p'>p1</span>,</span> <span class='nowrap'>int <span class='color_p'>p2</span>,</span> <span class='nowrap'>gdIOCtx* <span class='color_p'>p3</span> )</span></span></span><br/>
+<span class="iname">gdGetByte&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int* <span class='color_p'>result</span>,</span> <span class='nowrap'>gdIOCtx* <span class='color_p'>ctx</span> )</span></span></span><br/>
+<span class="iname">gdGetC&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='color_p'>ctx</span> )</span></span></span><br/>
+<span class="iname">gdGetInt&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int* <span class='color_p'>result</span>,</span> <span class='nowrap'>gdIOCtx* <span class='color_p'>ctx</span> )</span></span></span><br/>
+<span class="iname">gdGetWord&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int* <span class='color_p'>result</span>,</span> <span class='nowrap'>gdIOCtx* <span class='color_p'>ctx</span> )</span></span></span><br/>
+<span class="iname">gdPutBuf&#160;<span class='sym_p'>(&#160;<span class='nowrap'>void const* <span class='color_p'>p1</span>,</span> <span class='nowrap'>int <span class='color_p'>p2</span>,</span> <span class='nowrap'>gdIOCtx* <span class='color_p'>p3</span> )</span></span></span><br/>
+<span class="iname">gdPutC&#160;<span class='sym_p'>(&#160;unsigned char const <span class='color_p'>c</span>, <span class='nowrap'>gdIOCtx* <span class='color_p'>ctx</span> )</span></span></span><br/>
+<span class="iname">gdPutInt&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='color_p'>w</span>,</span> <span class='nowrap'>gdIOCtx* <span class='color_p'>ctx</span> )</span></span></span><br/>
+<span class="iname">gdPutWord&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='color_p'>w</span>,</span> <span class='nowrap'>gdIOCtx* <span class='color_p'>ctx</span> )</span></span></span><br/>
+<span class="iname">gdSeek&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='color_p'>ctx</span>,</span> <span class='nowrap'>int const <span class='color_p'>offset</span> )</span></span></span><br/>
+<span class="iname">gdTell&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='color_p'>ctx</span> )</span></span></span><br/>
+<span class="iname">Putchar&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='color_p'>c</span>,</span> <span class='nowrap'>gdIOCtx* <span class='color_p'>ctx</span> )</span></span></span><br/>
+<span class="iname">Putword&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='color_p'>w</span>,</span> <span class='nowrap'>gdIOCtx* <span class='color_p'>ctx</span> )</span></span></span><br/>
+<br/>
+<span class='h_name'>gdcache.h</span>, <span class='lib_name'>libgd.so.2.0.0</span><br/>
+<span class="iname">gdCacheCreate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='color_p'>size</span>,</span> gdCacheTestFn_t <span class='color_p'>gdCacheTest</span>, gdCacheFetchFn_t <span class='color_p'>gdCacheFetch</span>, <span class='nowrap'>gdCacheReleaseFn_t <span class='color_p'>gdCacheRelease</span> )</span></span></span><br/>
+<span class="iname">gdCacheDelete&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdCache_head_t* <span class='color_p'>head</span> )</span></span></span><br/>
+<span class="iname">gdCacheGet&#160;<span class='sym_p'>(&#160;gdCache_head_t* <span class='color_p'>head</span>, <span class='nowrap'>void* <span class='color_p'>keydata</span> )</span></span></span><br/>
+<br/>
+<a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<a name='Low_Risk_Binary_Problems'></a><a name='Type_Binary_Problems_Low'></a>
+<h2>Problems with Data Types, Low Severity (11)</h2><hr/>
+<span class='h_name'>gd.h</span><br/>
+<span class="section" onclick="javascript:showContent(this, 'c_1')">
+<span class='extendable'>[+]</span> <span class='ttype'>struct</span> gdImageStruct (9)</span>
+<br/>
+<div id="c_1" style="display:none;">
+<table class='ptable'><tr>
+<th width='2%'></th><th width='47%'>Change</th>
+<th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>Field <b>interpolation</b> has been added to this type.</td><td align='left' valign='top'>1) This field will not be initialized by old clients.<br/>2) Size of the inclusive type has been changed.<br/><b>NOTE</b>: this field should be accessed only from the new library functions, otherwise it may result in crash or incorrect behavior of applications.</td></tr>
+<tr><th>2</th><td align='left' valign='top'>Field <b>interpolation_id</b> has been added to this type.</td><td align='left' valign='top'>1) This field will not be initialized by old clients.<br/>2) Size of the inclusive type has been changed.<br/><b>NOTE</b>: this field should be accessed only from the new library functions, otherwise it may result in crash or incorrect behavior of applications.</td></tr>
+<tr><th>3</th><td align='left' valign='top'>Field <b>paletteQuantizationMaxQuality</b> has been added to this type.</td><td align='left' valign='top'>1) This field will not be initialized by old clients.<br/>2) Size of the inclusive type has been changed.<br/><b>NOTE</b>: this field should be accessed only from the new library functions, otherwise it may result in crash or incorrect behavior of applications.</td></tr>
+<tr><th>4</th><td align='left' valign='top'>Field <b>paletteQuantizationMethod</b> has been added to this type.</td><td align='left' valign='top'>1) This field will not be initialized by old clients.<br/>2) Size of the inclusive type has been changed.<br/><b>NOTE</b>: this field should be accessed only from the new library functions, otherwise it may result in crash or incorrect behavior of applications.</td></tr>
+<tr><th>5</th><td align='left' valign='top'>Field <b>paletteQuantizationMinQuality</b> has been added to this type.</td><td align='left' valign='top'>1) This field will not be initialized by old clients.<br/>2) Size of the inclusive type has been changed.<br/><b>NOTE</b>: this field should be accessed only from the new library functions, otherwise it may result in crash or incorrect behavior of applications.</td></tr>
+<tr><th>6</th><td align='left' valign='top'>Field <b>paletteQuantizationSpeed</b> has been added to this type.</td><td align='left' valign='top'>1) This field will not be initialized by old clients.<br/>2) Size of the inclusive type has been changed.<br/><b>NOTE</b>: this field should be accessed only from the new library functions, otherwise it may result in crash or incorrect behavior of applications.</td></tr>
+<tr><th>7</th><td align='left' valign='top'>Field <b>res_x</b> has been added to this type.</td><td align='left' valign='top'>1) This field will not be initialized by old clients.<br/>2) Size of the inclusive type has been changed.<br/><b>NOTE</b>: this field should be accessed only from the new library functions, otherwise it may result in crash or incorrect behavior of applications.</td></tr>
+<tr><th>8</th><td align='left' valign='top'>Field <b>res_y</b> has been added to this type.</td><td align='left' valign='top'>1) This field will not be initialized by old clients.<br/>2) Size of the inclusive type has been changed.<br/><b>NOTE</b>: this field should be accessed only from the new library functions, otherwise it may result in crash or incorrect behavior of applications.</td></tr>
+<tr><th>9</th><td align='left' valign='top'>Size of this type has been changed from <b>7304</b> bytes to <b>7336</b> bytes.</td><td align='left' valign='top'>The fields or parameters of such data type may be incorrectly initialized or accessed by old client applications.</td></tr>
+</table>
+<span class="section_affected" onclick="javascript:showContent(this, 'c_2')">
+[+] affected symbols (114)</span>
+<div id="c_2" style="display:none;">
+<div class='affected'><span class='iname_a'>gdImageAABlend&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageAlphaBlending&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>alphaBlendingArg</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageArc&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>cx</span>,</span> <span class='nowrap'>int <span class='param'>cy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span>,</span> <span class='nowrap'>int <span class='param'>s</span>,</span> <span class='nowrap'>int <span class='param'>e</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageBoundsSafe&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageChar&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdFontPtr <span class='param'>f</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>int <span class='param'>c</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCharUp&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdFontPtr <span class='param'>f</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>int <span class='param'>c</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorAllocate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorAllocateAlpha&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span>,</span> <span class='nowrap'>int <span class='param'>a</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorClosest&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorClosestAlpha&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span>,</span> <span class='nowrap'>int <span class='param'>a</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorClosestHWB&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorDeallocate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorExact&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorExactAlpha&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span>,</span> <span class='nowrap'>int <span class='param'>a</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorResolve&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorResolveAlpha&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span>,</span> <span class='nowrap'>int <span class='param'>a</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorTransparent&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCompare&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im1</span>,</span> <span class='nowrap'>gdImagePtr <span class='focus_p'>im2</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;im2&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCopy&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span>,</span> <span class='nowrap'>int <span class='param'>dstX</span>,</span> <span class='nowrap'>int <span class='param'>dstY</span>,</span> <span class='nowrap'>int <span class='param'>srcX</span>,</span> <span class='nowrap'>int <span class='param'>srcY</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCopyMerge&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span>,</span> <span class='nowrap'>int <span class='param'>dstX</span>,</span> <span class='nowrap'>int <span class='param'>dstY</span>,</span> <span class='nowrap'>int <span class='param'>srcX</span>,</span> <span class='nowrap'>int <span class='param'>srcY</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span>,</span> <span class='nowrap'>int <span class='param'>pct</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCopyMergeGray&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span>,</span> <span class='nowrap'>int <span class='param'>dstX</span>,</span> <span class='nowrap'>int <span class='param'>dstY</span>,</span> <span class='nowrap'>int <span class='param'>srcX</span>,</span> <span class='nowrap'>int <span class='param'>srcY</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span>,</span> <span class='nowrap'>int <span class='param'>pct</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCopyResampled&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span>,</span> <span class='nowrap'>int <span class='param'>dstX</span>,</span> <span class='nowrap'>int <span class='param'>dstY</span>,</span> <span class='nowrap'>int <span class='param'>srcX</span>,</span> <span class='nowrap'>int <span class='param'>srcY</span>,</span> <span class='nowrap'>int <span class='param'>dstW</span>,</span> <span class='nowrap'>int <span class='param'>dstH</span>,</span> <span class='nowrap'>int <span class='param'>srcW</span>,</span> <span class='nowrap'>int <span class='param'>srcH</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCopyResized&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span>,</span> <span class='nowrap'>int <span class='param'>dstX</span>,</span> <span class='nowrap'>int <span class='param'>dstY</span>,</span> <span class='nowrap'>int <span class='param'>srcX</span>,</span> <span class='nowrap'>int <span class='param'>srcY</span>,</span> <span class='nowrap'>int <span class='param'>dstW</span>,</span> <span class='nowrap'>int <span class='param'>dstH</span>,</span> <span class='nowrap'>int <span class='param'>srcW</span>,</span> <span class='nowrap'>int <span class='param'>srcH</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCopyRotated&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span>,</span> <span class='nowrap'>double <span class='param'>dstX</span>,</span> <span class='nowrap'>double <span class='param'>dstY</span>,</span> <span class='nowrap'>int <span class='param'>srcX</span>,</span> <span class='nowrap'>int <span class='param'>srcY</span>,</span> <span class='nowrap'>int <span class='param'>srcWidth</span>,</span> <span class='nowrap'>int <span class='param'>srcHeight</span>,</span> <span class='nowrap'>int <span class='param'>angle</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>sx</span>,</span> <span class='nowrap'>int <span class='param'>sy</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2Ctx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2Part&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>in</span>,</span> <span class='nowrap'>int <span class='param'>srcx</span>,</span> <span class='nowrap'>int <span class='param'>srcy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2PartCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='param'>in</span>,</span> <span class='nowrap'>int <span class='param'>srcx</span>,</span> <span class='nowrap'>int <span class='param'>srcy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2PartPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span>,</span> <span class='nowrap'>int <span class='param'>srcx</span>,</span> <span class='nowrap'>int <span class='param'>srcy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2Ptr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGdCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGdPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGif&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>fd</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGifCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGifPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromJpeg&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>infile</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromJpegCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='param'>infile</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromJpegPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromPng&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>fd</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromPngCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromPngPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromPngSource&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdSourcePtr <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromWBMP&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>inFile</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromWBMPCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='param'>infile</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromWBMPPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromXbm&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromXpm&#160;<span class='sym_p'>(&#160;<span class='nowrap'>char* <span class='param'>filename</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreatePaletteFromTrueColor&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>ditherFlag</span>,</span> <span class='nowrap'>int <span class='param'>colorsWanted</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateTrueColor&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>sx</span>,</span> <span class='nowrap'>int <span class='param'>sy</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageDashedLine&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x1</span>,</span> <span class='nowrap'>int <span class='param'>y1</span>,</span> <span class='nowrap'>int <span class='param'>x2</span>,</span> <span class='nowrap'>int <span class='param'>y2</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageDestroy&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageFill&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageFilledArc&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>cx</span>,</span> <span class='nowrap'>int <span class='param'>cy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span>,</span> <span class='nowrap'>int <span class='param'>s</span>,</span> <span class='nowrap'>int <span class='param'>e</span>,</span> <span class='nowrap'>int <span class='param'>color</span>,</span> <span class='nowrap'>int <span class='param'>style</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageFilledEllipse&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>cx</span>,</span> <span class='nowrap'>int <span class='param'>cy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageFilledPolygon&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdPointPtr <span class='param'>p</span>,</span> <span class='nowrap'>int <span class='param'>n</span>,</span> <span class='nowrap'>int <span class='param'>c</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageFilledRectangle&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x1</span>,</span> <span class='nowrap'>int <span class='param'>y1</span>,</span> <span class='nowrap'>int <span class='param'>x2</span>,</span> <span class='nowrap'>int <span class='param'>y2</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageFillToBorder&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>int <span class='param'>border</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGd&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGd2&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>cs</span>,</span> <span class='nowrap'>int <span class='param'>fmt</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGd2Ptr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>cs</span>,</span> <span class='nowrap'>int <span class='param'>fmt</span>,</span> <span class='nowrap'>int* <span class='param'>size</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGdPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGetClip&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>x1P</span>,</span> <span class='nowrap'>int* <span class='param'>y1P</span>,</span> <span class='nowrap'>int* <span class='param'>x2P</span>,</span> <span class='nowrap'>int* <span class='param'>y2P</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGetPixel&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGetTrueColorPixel&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGif&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifAnimAdd&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>outFile</span>,</span> <span class='nowrap'>int <span class='param'>LocalCM</span>,</span> <span class='nowrap'>int <span class='param'>LeftOfs</span>,</span> <span class='nowrap'>int <span class='param'>TopOfs</span>,</span> <span class='nowrap'>int <span class='param'>Delay</span>,</span> <span class='nowrap'>int <span class='param'>Disposal</span>,</span> <span class='nowrap'>gdImagePtr <span class='focus_p'>previm</span> )</span></span></span><br/><div class='affect'>8th parameter &#39;previm&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifAnimAddCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>LocalCM</span>,</span> <span class='nowrap'>int <span class='param'>LeftOfs</span>,</span> <span class='nowrap'>int <span class='param'>TopOfs</span>,</span> <span class='nowrap'>int <span class='param'>Delay</span>,</span> <span class='nowrap'>int <span class='param'>Disposal</span>,</span> <span class='nowrap'>gdImagePtr <span class='focus_p'>previm</span> )</span></span></span><br/><div class='affect'>8th parameter &#39;previm&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifAnimAddPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span>,</span> <span class='nowrap'>int <span class='param'>LocalCM</span>,</span> <span class='nowrap'>int <span class='param'>LeftOfs</span>,</span> <span class='nowrap'>int <span class='param'>TopOfs</span>,</span> <span class='nowrap'>int <span class='param'>Delay</span>,</span> <span class='nowrap'>int <span class='param'>Disposal</span>,</span> <span class='nowrap'>gdImagePtr <span class='focus_p'>previm</span> )</span></span></span><br/><div class='affect'>8th parameter &#39;previm&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifAnimBegin&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>outFile</span>,</span> <span class='nowrap'>int <span class='param'>GlobalCM</span>,</span> <span class='nowrap'>int <span class='param'>Loops</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifAnimBeginCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>GlobalCM</span>,</span> <span class='nowrap'>int <span class='param'>Loops</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifAnimBeginPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span>,</span> <span class='nowrap'>int <span class='param'>GlobalCM</span>,</span> <span class='nowrap'>int <span class='param'>Loops</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageInterlace&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>interlaceArg</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageJpeg&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>quality</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageJpegCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>quality</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageJpegPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span>,</span> <span class='nowrap'>int <span class='param'>quality</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageLine&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x1</span>,</span> <span class='nowrap'>int <span class='param'>y1</span>,</span> <span class='nowrap'>int <span class='param'>x2</span>,</span> <span class='nowrap'>int <span class='param'>y2</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageOpenPolygon&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdPointPtr <span class='param'>p</span>,</span> <span class='nowrap'>int <span class='param'>n</span>,</span> <span class='nowrap'>int <span class='param'>c</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePaletteCopy&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePng&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePngCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePngCtxEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>level</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePngEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>level</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePngPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePngPtrEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span>,</span> <span class='nowrap'>int <span class='param'>level</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePngToSink&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdSinkPtr <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePolygon&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdPointPtr <span class='param'>p</span>,</span> <span class='nowrap'>int <span class='param'>n</span>,</span> <span class='nowrap'>int <span class='param'>c</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageRectangle&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x1</span>,</span> <span class='nowrap'>int <span class='param'>y1</span>,</span> <span class='nowrap'>int <span class='param'>x2</span>,</span> <span class='nowrap'>int <span class='param'>y2</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSaveAlpha&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>saveAlphaArg</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetAntiAliased&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>c</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetAntiAliasedDontBlend&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>c</span>,</span> <span class='nowrap'>int <span class='param'>dont_blend</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetBrush&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdImagePtr <span class='focus_p'>brush</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;brush&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetClip&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x1</span>,</span> <span class='nowrap'>int <span class='param'>y1</span>,</span> <span class='nowrap'>int <span class='param'>x2</span>,</span> <span class='nowrap'>int <span class='param'>y2</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetPixel&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetStyle&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>style</span>,</span> <span class='nowrap'>int <span class='param'>noOfPixels</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetThickness&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>thickness</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetTile&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdImagePtr <span class='focus_p'>tile</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;tile&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSharpen&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>pct</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSquareToCircle&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>radius</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageString&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdFontPtr <span class='param'>f</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>unsigned char* <span class='param'>s</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageString16&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdFontPtr <span class='param'>f</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>unsigned short* <span class='param'>s</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageStringFT&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImage* <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>brect</span>,</span> <span class='nowrap'>int <span class='param'>fg</span>,</span> <span class='nowrap'>char* <span class='param'>fontlist</span>,</span> <span class='nowrap'>double <span class='param'>ptsize</span>,</span> <span class='nowrap'>double <span class='param'>angle</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>char* <span class='param'>string</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageStringFTCircle&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>cx</span>,</span> <span class='nowrap'>int <span class='param'>cy</span>,</span> <span class='nowrap'>double <span class='param'>radius</span>,</span> <span class='nowrap'>double <span class='param'>textRadius</span>,</span> double <span class='param'>fillPortion</span>, <span class='nowrap'>char* <span class='param'>font</span>,</span> <span class='nowrap'>double <span class='param'>points</span>,</span> <span class='nowrap'>char* <span class='param'>top</span>,</span> <span class='nowrap'>char* <span class='param'>bottom</span>,</span> <span class='nowrap'>int <span class='param'>fgcolor</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageStringFTEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImage* <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>brect</span>,</span> <span class='nowrap'>int <span class='param'>fg</span>,</span> <span class='nowrap'>char* <span class='param'>fontlist</span>,</span> <span class='nowrap'>double <span class='param'>ptsize</span>,</span> <span class='nowrap'>double <span class='param'>angle</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>char* <span class='param'>string</span>,</span> <span class='nowrap'>gdFTStringExtraPtr <span class='param'>strex</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageStringTTF&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImage* <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>brect</span>,</span> <span class='nowrap'>int <span class='param'>fg</span>,</span> <span class='nowrap'>char* <span class='param'>fontlist</span>,</span> <span class='nowrap'>double <span class='param'>ptsize</span>,</span> <span class='nowrap'>double <span class='param'>angle</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>char* <span class='param'>string</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageStringUp&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdFontPtr <span class='param'>f</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>unsigned char* <span class='param'>s</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageStringUp16&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdFontPtr <span class='param'>f</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>unsigned short* <span class='param'>s</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageTrueColorToPalette&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>ditherFlag</span>,</span> <span class='nowrap'>int <span class='param'>colorsWanted</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageWBMP&#160;<span class='sym_p'>(&#160;gdImagePtr <span class='focus_p'>image</span>, <span class='nowrap'>int <span class='param'>fg</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;image&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageWBMPCtx&#160;<span class='sym_p'>(&#160;gdImagePtr <span class='focus_p'>image</span>, <span class='nowrap'>int <span class='param'>fg</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;image&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageWBMPPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span>,</span> <span class='nowrap'>int <span class='param'>fg</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+</div></div>
+<br/><br/></div>
+
+<br/><span class='h_name'>gd_io.h</span><br/>
+<span class="section" onclick="javascript:showContent(this, 'c_3')">
+<span class='extendable'>[+]</span> <span class='ttype'>struct</span> gdIOCtx (2)</span>
+<br/>
+<div id="c_3" style="display:none;">
+<table class='ptable'><tr>
+<th width='2%'></th><th width='47%'>Change</th>
+<th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>Field <b>data</b> has been added to this type.</td><td align='left' valign='top'>1) This field will not be initialized by old clients.<br/>2) Size of the inclusive type has been changed.<br/><b>NOTE</b>: this field should be accessed only from the new library functions, otherwise it may result in crash or incorrect behavior of applications.</td></tr>
+<tr><th>2</th><td align='left' valign='top'>Size of this type has been changed from <b>56</b> bytes to <b>64</b> bytes.</td><td align='left' valign='top'>The fields or parameters of such data type may be incorrectly initialized or accessed by old client applications.</td></tr>
+</table>
+<span class="section_affected" onclick="javascript:showContent(this, 'c_4')">
+[+] affected symbols (20)</span>
+<div id="c_4" style="display:none;">
+<div class='affected'><span class='iname_a'>gdDPExtractData&#160;<span class='sym_p'>(&#160;struct gdIOCtx* <span class='focus_p'>ctx</span>, <span class='nowrap'>int* <span class='param'>size</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;ctx&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2Ctx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='focus_p'>in</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;in&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2PartCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='focus_p'>in</span>,</span> <span class='nowrap'>int <span class='param'>srcx</span>,</span> <span class='nowrap'>int <span class='param'>srcy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;in&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGdCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='focus_p'>in</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;in&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGifCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='focus_p'>in</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;in&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromJpegCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='focus_p'>infile</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;infile&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromPngCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='focus_p'>in</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;in&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromWBMPCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='focus_p'>infile</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;infile&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageGifAnimAddCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span>,</span> <span class='nowrap'>int <span class='param'>LocalCM</span>,</span> <span class='nowrap'>int <span class='param'>LeftOfs</span>,</span> <span class='nowrap'>int <span class='param'>TopOfs</span>,</span> <span class='nowrap'>int <span class='param'>Delay</span>,</span> <span class='nowrap'>int <span class='param'>Disposal</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>previm</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageGifAnimBeginCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span>,</span> <span class='nowrap'>int <span class='param'>GlobalCM</span>,</span> <span class='nowrap'>int <span class='param'>Loops</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageGifAnimEndCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageGifCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageJpegCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span>,</span> <span class='nowrap'>int <span class='param'>quality</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImagePngCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImagePngCtxEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span>,</span> <span class='nowrap'>int <span class='param'>level</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageWBMPCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>image</span>,</span> <span class='nowrap'>int <span class='param'>fg</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span> )</span></span></span><br/><div class='affect'>3rd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdNewDynamicCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdNewDynamicCtxEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span>,</span> <span class='nowrap'>int <span class='param'>freeFlag</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdNewFileCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>p1</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdNewSSCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdSourcePtr <span class='param'>in</span>,</span> <span class='nowrap'>gdSinkPtr <span class='param'>out</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+</div></div>
+<br/><br/></div>
+
+<br/><a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<a name='Symbol_Binary_Problems_Low'></a><a name='Interface_Binary_Problems_Low'></a>
+<h2>Problems with Symbols, Low Severity (1)</h2><hr/>
+<span class='h_name'>gd.h</span>, <span class='lib_name'>libgd.so.2.0.0</span><br/>
+<span class="section" onclick="javascript:showContent(this, 'c_5')">
+<span class='extendable'>[+]</span> gdImageTrueColorToPalette&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>ditherFlag</span>,</span> <span class='nowrap'>int <span class='color_p'>colorsWanted</span> )</span></span> (1)</span>
+<br/>
+<div id="c_5" style="display:none;">
+
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>Type of return value has been changed from <b>void</b> to <span class='nowrap'><b>int</b> (<b>4</b> bytes)</span>.</td><td align='left' valign='top'>Replacement of return type may indicate a change in its semantic meaning.</td></tr>
+</table><br/>
+</div>
+<br/><a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<a name='Constant_Binary_Problems_Low'></a><h2>Problems with Constants, Low Severity (1)</h2><hr/>
+<span class='h_name'>gd.h</span><br/>
+<span class="section" onclick="javascript:showContent(this, 'c_6')">
+<span class='extendable'>[+]</span> PATHSEPARATOR</span>
+<br/>
+<div id="c_6" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>PATHSEPARATOR</b> with value <b>&quot;:&quot;</b> has been removed.</td><td align='left' valign='top'>The value of this constant may no longer be properly handled by new-version library functions.</td></tr>
+</table><br/></div>
+
+<br/>
+<a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<a name='Other_Binary_Changes'></a><a name='Other_Binary_Changes_In_Constants'></a><h2>Other Changes in Constants (7)</h2><hr/>
+<span class='h_name'>gd.h</span><br/>
+<span class="section" onclick="javascript:showContent(this, 'c_7')">
+<span class='extendable'>[+]</span> GD_EPSILON</span>
+<br/>
+<div id="c_7" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>GD_EPSILON</b> with value <b>1e-6</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_8')">
+<span class='extendable'>[+]</span> GD_FALSE</span>
+<br/>
+<div id="c_8" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>GD_FALSE</b> with value <b>0</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_9')">
+<span class='extendable'>[+]</span> GD_FLIP_BOTH</span>
+<br/>
+<div id="c_9" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>GD_FLIP_BOTH</b> with value <b>3</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_10')">
+<span class='extendable'>[+]</span> GD_FLIP_HORINZONTAL</span>
+<br/>
+<div id="c_10" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>GD_FLIP_HORINZONTAL</b> with value <b>1</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_11')">
+<span class='extendable'>[+]</span> GD_FLIP_VERTICAL</span>
+<br/>
+<div id="c_11" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>GD_FLIP_VERTICAL</b> with value <b>2</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_12')">
+<span class='extendable'>[+]</span> GD_TRUE</span>
+<br/>
+<div id="c_12" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>GD_TRUE</b> with value <b>1</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_13')">
+<span class='extendable'>[+]</span> M_PI</span>
+<br/>
+<div id="c_13" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>M_PI</b> with value <b>3.14159265358979323846</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<br/>
+<a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<a name='Headers'></a><h2>Header Files (10)</h2><hr/>
+<div class='h_list'>
+entities.h<br/>
+gd.h<br/>
+gd_io.h<br/>
+gdcache.h<br/>
+gdfontg.h<br/>
+gdfontl.h<br/>
+gdfontmb.h<br/>
+gdfonts.h<br/>
+gdfontt.h<br/>
+gdfx.h<br/>
+</div>
+<br/><a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<a name='Libs'></a><h2>Shared Libraries (1)</h2><hr/>
+<div class='lib_list'>
+libgd.so.2.0.0<br/>
+</div>
+<br/><a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<br/><br/><br/></div><div id='SourceTab' class='tab'>
+<h2>Test Info</h2><hr/>
+<table class='summary'>
+<tr><th>Library Name</th><td>libgd</td></tr>
+<tr><th>Version #1</th><td>2.0.35</td></tr>
+<tr><th>Version #2</th><td>2.1.0</td></tr>
+<tr><th>CPU Type</th><td>x86_64</td></tr>
+<tr><th>GCC Version</th><td>4.7.2</td></tr>
+<tr><th>Subject</th><td width='150px'>Source Compatibility</td></tr>
+</table>
+<h2>Test Results</h2><hr/>
+<table class='summary'><tr><th>Total Header Files</th><td><a href='#Headers' style='color:Blue;'>10</a></td></tr>
+<tr><th>Total Shared Libraries</th><td><a href='#Libs' style='color:Blue;'>1</a></td></tr>
+<tr><th>Total Symbols / Types</th><td>149 / 68</td></tr>
+<tr><th>Verdict</th><td><span style='color:Green;'><b>Compatible</b></span></td></tr>
+</table>
+<h2>Problem Summary</h2><hr/>
+<table class='summary'><tr><th></th><th style='text-align:center;'>Severity</th><th style='text-align:center;'>Count</th></tr><tr><th>Added Symbols</th><td>-</td><td class='new'><a href='#Source_Added' style='color:Blue;'>73</a></td></tr>
+<tr><th>Removed Symbols</th><td>High</td><td>0</td></tr>
+<tr><th rowspan='3'>Problems with<br/>Data Types</th><td>High</td><td>0</td></tr>
+<tr><td>Medium</td><td>0</td></tr>
+<tr><td>Low</td><td class='warning'><a href='#Type_Source_Problems_Low' style='color:Blue;'>9</a></td></tr>
+<tr><th rowspan='3'>Problems with<br/>Symbols</th><td>High</td><td>0</td></tr>
+<tr><td>Medium</td><td>0</td></tr>
+<tr><td>Low</td><td>0</td></tr>
+<tr><th>Problems with<br/>Constants</th><td>Low</td><td class='warning'><a href='#Constant_Source_Problems_Low' style='color:Blue;'>7</a></td></tr>
+<tr><th>Other Changes<br/>in Symbols</th><td>-</td><td class='passed'><a href='#Other_Source_Changes_In_Symbols' style='color:Blue;'>1</a></td></tr>
+<tr><th>Other Changes<br/>in Constants</th><td>-</td><td class='passed'><a href='#Other_Source_Changes_In_Constants' style='color:Blue;'>7</a></td></tr>
+</table>
+
+<a name='Source_Added'></a><h2>Added Symbols (73)</h2><hr/>
+<span class='h_name'>gd.h</span><br/>
+<span class="iname">gdAffineApplyToPointF&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdPointFPtr <span class='color_p'>dst</span>,</span> gdPointFPtr const <span class='color_p'>src</span>, <span class='nowrap'>double const* <span class='color_p'>affine</span> )</span></span></span><br/>
+<span class="iname">gdAffineConcat&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> double const* <span class='color_p'>m1</span>, <span class='nowrap'>double const* <span class='color_p'>m2</span> )</span></span></span><br/>
+<span class="iname">gdAffineEqual&#160;<span class='sym_p'>(&#160;double const* <span class='color_p'>matrix1</span>, <span class='nowrap'>double const* <span class='color_p'>matrix2</span> )</span></span></span><br/>
+<span class="iname">gdAffineExpansion&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double const* <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdAffineFlip&#160;<span class='sym_p'>(&#160;double* <span class='color_p'>dst_affine</span>, double const* <span class='color_p'>src_affine</span>, int const <span class='color_p'>flip_h</span>, <span class='nowrap'>int const <span class='color_p'>flip_v</span> )</span></span></span><br/>
+<span class="iname">gdAffineIdentity&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span> )</span></span></span><br/>
+<span class="iname">gdAffineInvert&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> <span class='nowrap'>double const* <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdAffineRectilinear&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double const* <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdAffineRotate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> <span class='nowrap'>double const <span class='color_p'>angle</span> )</span></span></span><br/>
+<span class="iname">gdAffineScale&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> double const <span class='color_p'>scale_x</span>, <span class='nowrap'>double const <span class='color_p'>scale_y</span> )</span></span></span><br/>
+<span class="iname">gdAffineShearHorizontal&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> <span class='nowrap'>double const <span class='color_p'>angle</span> )</span></span></span><br/>
+<span class="iname">gdAffineShearVertical&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> <span class='nowrap'>double const <span class='color_p'>angle</span> )</span></span></span><br/>
+<span class="iname">gdAffineTranslate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>double* <span class='color_p'>dst</span>,</span> double const <span class='color_p'>offset_x</span>, <span class='nowrap'>double const <span class='color_p'>offset_y</span> )</span></span></span><br/>
+<span class="iname">gdClearErrorMethod&#160;<span class='sym_p'>(&#160;)</span></span><br/>
+<span class="iname">gdImageBmp&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='color_p'>outFile</span>,</span> <span class='nowrap'>int <span class='color_p'>compression</span> )</span></span></span><br/>
+<span class="iname">gdImageBmpCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>gdIOCtxPtr <span class='color_p'>out</span>,</span> <span class='nowrap'>int <span class='color_p'>compression</span> )</span></span></span><br/>
+<span class="iname">gdImageBmpPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int* <span class='color_p'>size</span>,</span> <span class='nowrap'>int <span class='color_p'>compression</span> )</span></span></span><br/>
+<span class="iname">gdImageBrightness&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span>,</span> <span class='nowrap'>int <span class='color_p'>brightness</span> )</span></span></span><br/>
+<span class="iname">gdImageColor&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span>,</span> <span class='nowrap'>int const <span class='color_p'>red</span>,</span> <span class='nowrap'>int const <span class='color_p'>green</span>,</span> <span class='nowrap'>int const <span class='color_p'>blue</span>,</span> <span class='nowrap'>int const <span class='color_p'>alpha</span> )</span></span></span><br/>
+<span class="iname">gdImageColorReplace&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>src</span>,</span> <span class='nowrap'>int <span class='color_p'>dst</span> )</span></span></span><br/>
+<span class="iname">gdImageColorReplaceArray&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>len</span>,</span> <span class='nowrap'>int* <span class='color_p'>src</span>,</span> <span class='nowrap'>int* <span class='color_p'>dst</span> )</span></span></span><br/>
+<span class="iname">gdImageColorReplaceCallback&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>gdCallbackImageColor <span class='color_p'>callback</span> )</span></span></span><br/>
+<span class="iname">gdImageColorReplaceThreshold&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>src</span>,</span> <span class='nowrap'>int <span class='color_p'>dst</span>,</span> <span class='nowrap'>float <span class='color_p'>threshold</span> )</span></span></span><br/>
+<span class="iname">gdImageContrast&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span>,</span> <span class='nowrap'>double <span class='color_p'>contrast</span> )</span></span></span><br/>
+<span class="iname">gdImageConvolution&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span>,</span> float[3]* <span class='color_p'>filter</span>, float <span class='color_p'>filter_div</span>, <span class='nowrap'>float <span class='color_p'>offset</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromBmp&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='color_p'>inFile</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromBmpCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='color_p'>infile</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromBmpPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='color_p'>size</span>,</span> <span class='nowrap'>void* <span class='color_p'>data</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromTga&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='color_p'>fp</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromTgaCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='color_p'>ctx</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromTgaPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='color_p'>size</span>,</span> <span class='nowrap'>void* <span class='color_p'>data</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromTiff&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='color_p'>inFile</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromTiffCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='color_p'>infile</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromTiffPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='color_p'>size</span>,</span> <span class='nowrap'>void* <span class='color_p'>data</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromWebp&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='color_p'>inFile</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromWebpCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='color_p'>infile</span> )</span></span></span><br/>
+<span class="iname">gdImageCreateFromWebpPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='color_p'>size</span>,</span> <span class='nowrap'>void* <span class='color_p'>data</span> )</span></span></span><br/>
+<span class="iname">gdImageCrop&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span>,</span> <span class='nowrap'>struct gdRect const* <span class='color_p'>crop</span> )</span></span></span><br/>
+<span class="iname">gdImageCropAuto&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>unsigned int const <span class='color_p'>mode</span> )</span></span></span><br/>
+<span class="iname">gdImageCropThreshold&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> unsigned int const <span class='color_p'>color</span>, <span class='nowrap'>float const <span class='color_p'>threshold</span> )</span></span></span><br/>
+<span class="iname">gdImageEdgeDetectQuick&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdImageEmboss&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span> )</span></span></span><br/>
+<span class="iname">gdImageFlipBoth&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span> )</span></span></span><br/>
+<span class="iname">gdImageFlipHorizontal&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span> )</span></span></span><br/>
+<span class="iname">gdImageFlipVertical&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span> )</span></span></span><br/>
+<span class="iname">gdImageGaussianBlur&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span> )</span></span></span><br/>
+<span class="iname">gdImageGrayScale&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdImageMeanRemoval&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span> )</span></span></span><br/>
+<span class="iname">gdImageNegate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdImageNeuQuant&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> int const <span class='color_p'>max_color</span>, <span class='nowrap'>int <span class='color_p'>sample_factor</span> )</span></span></span><br/>
+<span class="iname">gdImagePaletteToTrueColor&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdImagePixelate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>block_size</span>,</span> <span class='nowrap'>unsigned int const <span class='color_p'>mode</span> )</span></span></span><br/>
+<span class="iname">gdImageRotateInterpolated&#160;<span class='sym_p'>(&#160;gdImagePtr const <span class='color_p'>src</span>, float const <span class='color_p'>angle</span>, <span class='nowrap'>int <span class='color_p'>bgcolor</span> )</span></span></span><br/>
+<span class="iname">gdImageScale&#160;<span class='sym_p'>(&#160;gdImagePtr const <span class='color_p'>src</span>, unsigned int const <span class='color_p'>new_width</span>, <span class='nowrap'>unsigned int const <span class='color_p'>new_height</span> )</span></span></span><br/>
+<span class="iname">gdImageScatter&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>sub</span>,</span> <span class='nowrap'>int <span class='color_p'>plus</span> )</span></span></span><br/>
+<span class="iname">gdImageScatterColor&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>sub</span>,</span> <span class='nowrap'>int <span class='color_p'>plus</span>,</span> <span class='nowrap'>int* <span class='color_p'>colors</span>,</span> <span class='nowrap'>unsigned int <span class='color_p'>num_colors</span> )</span></span></span><br/>
+<span class="iname">gdImageScatterEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>gdScatterPtr <span class='color_p'>s</span> )</span></span></span><br/>
+<span class="iname">gdImageSelectiveBlur&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>src</span> )</span></span></span><br/>
+<span class="iname">gdImageSetResolution&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> unsigned int const <span class='color_p'>res_x</span>, <span class='nowrap'>unsigned int const <span class='color_p'>res_y</span> )</span></span></span><br/>
+<span class="iname">gdImageSmooth&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>float <span class='color_p'>weight</span> )</span></span></span><br/>
+<span class="iname">gdImageTiff&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='color_p'>outFile</span> )</span></span></span><br/>
+<span class="iname">gdImageTiffCtx&#160;<span class='sym_p'>(&#160;gdImagePtr <span class='color_p'>image</span>, <span class='nowrap'>gdIOCtx* <span class='color_p'>out</span> )</span></span></span><br/>
+<span class="iname">gdImageTiffPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int* <span class='color_p'>size</span> )</span></span></span><br/>
+<span class="iname">gdImageTrueColorToPaletteSetMethod&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>method</span>,</span> <span class='nowrap'>int <span class='color_p'>speed</span> )</span></span></span><br/>
+<span class="iname">gdImageTrueColorToPaletteSetQuality&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>min_quality</span>,</span> <span class='nowrap'>int <span class='color_p'>max_quality</span> )</span></span></span><br/>
+<span class="iname">gdImageWebp&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='color_p'>outFile</span> )</span></span></span><br/>
+<span class="iname">gdImageWebpCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> gdIOCtx* <span class='color_p'>outfile</span>, <span class='nowrap'>int <span class='color_p'>quantization</span> )</span></span></span><br/>
+<span class="iname">gdImageWebpEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='color_p'>outFile</span>,</span> <span class='nowrap'>int <span class='color_p'>quantization</span> )</span></span></span><br/>
+<span class="iname">gdImageWebpPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int* <span class='color_p'>size</span> )</span></span></span><br/>
+<span class="iname">gdImageWebpPtrEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int* <span class='color_p'>size</span>,</span> <span class='nowrap'>int <span class='color_p'>quantization</span> )</span></span></span><br/>
+<span class="iname">gdSetErrorMethod&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdErrorMethod <span class='color_p'>p1</span> )</span></span></span><br/>
+<span class="iname">gdTransformAffineCopy&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>dst</span>,</span> <span class='nowrap'>int <span class='color_p'>dst_x</span>,</span> <span class='nowrap'>int <span class='color_p'>dst_y</span>,</span> gdImagePtr const <span class='color_p'>src</span>, gdRectPtr <span class='color_p'>src_region</span>, <span class='nowrap'>double const* <span class='color_p'>affine</span> )</span></span></span><br/>
+<span class="iname">gdTransformAffineGetImage&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr* <span class='color_p'>dst</span>,</span> gdImagePtr const <span class='color_p'>src</span>, gdRectPtr <span class='color_p'>src_area</span>, <span class='nowrap'>double const* <span class='color_p'>affine</span> )</span></span></span><br/>
+<br/>
+<a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<a name='Low_Risk_Source_Problems'></a><a name='Type_Source_Problems_Low'></a>
+<h2>Problems with Data Types, Low Severity (9)</h2><hr/>
+<span class='h_name'>gd.h</span><br/>
+<span class="section" onclick="javascript:showContent(this, 'c_14')">
+<span class='extendable'>[+]</span> <span class='ttype'>struct</span> gdImageStruct (8)</span>
+<br/>
+<div id="c_14" style="display:none;">
+<table class='ptable'><tr>
+<th width='2%'></th><th width='47%'>Change</th>
+<th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>Field <b>interpolation</b> has been added to this type.</td><td align='left' valign='top'>This field will not be initialized or used by old client applications.</td></tr>
+<tr><th>2</th><td align='left' valign='top'>Field <b>interpolation_id</b> has been added to this type.</td><td align='left' valign='top'>This field will not be initialized or used by old client applications.</td></tr>
+<tr><th>3</th><td align='left' valign='top'>Field <b>paletteQuantizationMaxQuality</b> has been added to this type.</td><td align='left' valign='top'>This field will not be initialized or used by old client applications.</td></tr>
+<tr><th>4</th><td align='left' valign='top'>Field <b>paletteQuantizationMethod</b> has been added to this type.</td><td align='left' valign='top'>This field will not be initialized or used by old client applications.</td></tr>
+<tr><th>5</th><td align='left' valign='top'>Field <b>paletteQuantizationMinQuality</b> has been added to this type.</td><td align='left' valign='top'>This field will not be initialized or used by old client applications.</td></tr>
+<tr><th>6</th><td align='left' valign='top'>Field <b>paletteQuantizationSpeed</b> has been added to this type.</td><td align='left' valign='top'>This field will not be initialized or used by old client applications.</td></tr>
+<tr><th>7</th><td align='left' valign='top'>Field <b>res_x</b> has been added to this type.</td><td align='left' valign='top'>This field will not be initialized or used by old client applications.</td></tr>
+<tr><th>8</th><td align='left' valign='top'>Field <b>res_y</b> has been added to this type.</td><td align='left' valign='top'>This field will not be initialized or used by old client applications.</td></tr>
+</table>
+<span class="section_affected" onclick="javascript:showContent(this, 'c_15')">
+[+] affected symbols (114)</span>
+<div id="c_15" style="display:none;">
+<div class='affected'><span class='iname_a'>gdImageAABlend&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageAlphaBlending&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>alphaBlendingArg</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageArc&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>cx</span>,</span> <span class='nowrap'>int <span class='param'>cy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span>,</span> <span class='nowrap'>int <span class='param'>s</span>,</span> <span class='nowrap'>int <span class='param'>e</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageBoundsSafe&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageChar&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdFontPtr <span class='param'>f</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>int <span class='param'>c</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCharUp&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdFontPtr <span class='param'>f</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>int <span class='param'>c</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorAllocate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorAllocateAlpha&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span>,</span> <span class='nowrap'>int <span class='param'>a</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorClosest&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorClosestAlpha&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span>,</span> <span class='nowrap'>int <span class='param'>a</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorClosestHWB&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorDeallocate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorExact&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorExactAlpha&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span>,</span> <span class='nowrap'>int <span class='param'>a</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorResolve&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorResolveAlpha&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>r</span>,</span> <span class='nowrap'>int <span class='param'>g</span>,</span> <span class='nowrap'>int <span class='param'>b</span>,</span> <span class='nowrap'>int <span class='param'>a</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageColorTransparent&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCompare&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im1</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>im2</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im1&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCopy&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span>,</span> <span class='nowrap'>int <span class='param'>dstX</span>,</span> <span class='nowrap'>int <span class='param'>dstY</span>,</span> <span class='nowrap'>int <span class='param'>srcX</span>,</span> <span class='nowrap'>int <span class='param'>srcY</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCopyMerge&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span>,</span> <span class='nowrap'>int <span class='param'>dstX</span>,</span> <span class='nowrap'>int <span class='param'>dstY</span>,</span> <span class='nowrap'>int <span class='param'>srcX</span>,</span> <span class='nowrap'>int <span class='param'>srcY</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span>,</span> <span class='nowrap'>int <span class='param'>pct</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCopyMergeGray&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span>,</span> <span class='nowrap'>int <span class='param'>dstX</span>,</span> <span class='nowrap'>int <span class='param'>dstY</span>,</span> <span class='nowrap'>int <span class='param'>srcX</span>,</span> <span class='nowrap'>int <span class='param'>srcY</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span>,</span> <span class='nowrap'>int <span class='param'>pct</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCopyResampled&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span>,</span> <span class='nowrap'>int <span class='param'>dstX</span>,</span> <span class='nowrap'>int <span class='param'>dstY</span>,</span> <span class='nowrap'>int <span class='param'>srcX</span>,</span> <span class='nowrap'>int <span class='param'>srcY</span>,</span> <span class='nowrap'>int <span class='param'>dstW</span>,</span> <span class='nowrap'>int <span class='param'>dstH</span>,</span> <span class='nowrap'>int <span class='param'>srcW</span>,</span> <span class='nowrap'>int <span class='param'>srcH</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCopyResized&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span>,</span> <span class='nowrap'>int <span class='param'>dstX</span>,</span> <span class='nowrap'>int <span class='param'>dstY</span>,</span> <span class='nowrap'>int <span class='param'>srcX</span>,</span> <span class='nowrap'>int <span class='param'>srcY</span>,</span> <span class='nowrap'>int <span class='param'>dstW</span>,</span> <span class='nowrap'>int <span class='param'>dstH</span>,</span> <span class='nowrap'>int <span class='param'>srcW</span>,</span> <span class='nowrap'>int <span class='param'>srcH</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCopyRotated&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span>,</span> <span class='nowrap'>double <span class='param'>dstX</span>,</span> <span class='nowrap'>double <span class='param'>dstY</span>,</span> <span class='nowrap'>int <span class='param'>srcX</span>,</span> <span class='nowrap'>int <span class='param'>srcY</span>,</span> <span class='nowrap'>int <span class='param'>srcWidth</span>,</span> <span class='nowrap'>int <span class='param'>srcHeight</span>,</span> <span class='nowrap'>int <span class='param'>angle</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreate&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>sx</span>,</span> <span class='nowrap'>int <span class='param'>sy</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2Ctx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2Part&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>in</span>,</span> <span class='nowrap'>int <span class='param'>srcx</span>,</span> <span class='nowrap'>int <span class='param'>srcy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2PartCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='param'>in</span>,</span> <span class='nowrap'>int <span class='param'>srcx</span>,</span> <span class='nowrap'>int <span class='param'>srcy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2PartPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span>,</span> <span class='nowrap'>int <span class='param'>srcx</span>,</span> <span class='nowrap'>int <span class='param'>srcy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2Ptr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGdCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGdPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGif&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>fd</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGifCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGifPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromJpeg&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>infile</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromJpegCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='param'>infile</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromJpegPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromPng&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>fd</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromPngCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromPngPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromPngSource&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdSourcePtr <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromWBMP&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>inFile</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromWBMPCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='param'>infile</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromWBMPPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromXbm&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>in</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateFromXpm&#160;<span class='sym_p'>(&#160;<span class='nowrap'>char* <span class='param'>filename</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreatePaletteFromTrueColor&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>ditherFlag</span>,</span> <span class='nowrap'>int <span class='param'>colorsWanted</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageCreateTrueColor&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>sx</span>,</span> <span class='nowrap'>int <span class='param'>sy</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageDashedLine&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x1</span>,</span> <span class='nowrap'>int <span class='param'>y1</span>,</span> <span class='nowrap'>int <span class='param'>x2</span>,</span> <span class='nowrap'>int <span class='param'>y2</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageDestroy&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageFill&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageFilledArc&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>cx</span>,</span> <span class='nowrap'>int <span class='param'>cy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span>,</span> <span class='nowrap'>int <span class='param'>s</span>,</span> <span class='nowrap'>int <span class='param'>e</span>,</span> <span class='nowrap'>int <span class='param'>color</span>,</span> <span class='nowrap'>int <span class='param'>style</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageFilledEllipse&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>cx</span>,</span> <span class='nowrap'>int <span class='param'>cy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageFilledPolygon&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdPointPtr <span class='param'>p</span>,</span> <span class='nowrap'>int <span class='param'>n</span>,</span> <span class='nowrap'>int <span class='param'>c</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageFilledRectangle&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x1</span>,</span> <span class='nowrap'>int <span class='param'>y1</span>,</span> <span class='nowrap'>int <span class='param'>x2</span>,</span> <span class='nowrap'>int <span class='param'>y2</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageFillToBorder&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>int <span class='param'>border</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGd&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGd2&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>cs</span>,</span> <span class='nowrap'>int <span class='param'>fmt</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGd2Ptr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>cs</span>,</span> <span class='nowrap'>int <span class='param'>fmt</span>,</span> <span class='nowrap'>int* <span class='param'>size</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGdPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGetClip&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>x1P</span>,</span> <span class='nowrap'>int* <span class='param'>y1P</span>,</span> <span class='nowrap'>int* <span class='param'>x2P</span>,</span> <span class='nowrap'>int* <span class='param'>y2P</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGetPixel&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGetTrueColorPixel&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGif&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifAnimAdd&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>outFile</span>,</span> <span class='nowrap'>int <span class='param'>LocalCM</span>,</span> <span class='nowrap'>int <span class='param'>LeftOfs</span>,</span> <span class='nowrap'>int <span class='param'>TopOfs</span>,</span> <span class='nowrap'>int <span class='param'>Delay</span>,</span> <span class='nowrap'>int <span class='param'>Disposal</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>previm</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifAnimAddCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>LocalCM</span>,</span> <span class='nowrap'>int <span class='param'>LeftOfs</span>,</span> <span class='nowrap'>int <span class='param'>TopOfs</span>,</span> <span class='nowrap'>int <span class='param'>Delay</span>,</span> <span class='nowrap'>int <span class='param'>Disposal</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>previm</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifAnimAddPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span>,</span> <span class='nowrap'>int <span class='param'>LocalCM</span>,</span> <span class='nowrap'>int <span class='param'>LeftOfs</span>,</span> <span class='nowrap'>int <span class='param'>TopOfs</span>,</span> <span class='nowrap'>int <span class='param'>Delay</span>,</span> <span class='nowrap'>int <span class='param'>Disposal</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>previm</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifAnimBegin&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>outFile</span>,</span> <span class='nowrap'>int <span class='param'>GlobalCM</span>,</span> <span class='nowrap'>int <span class='param'>Loops</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifAnimBeginCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>GlobalCM</span>,</span> <span class='nowrap'>int <span class='param'>Loops</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifAnimBeginPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span>,</span> <span class='nowrap'>int <span class='param'>GlobalCM</span>,</span> <span class='nowrap'>int <span class='param'>Loops</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageGifPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageInterlace&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>interlaceArg</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageJpeg&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>quality</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageJpegCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>quality</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageJpegPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span>,</span> <span class='nowrap'>int <span class='param'>quality</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageLine&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x1</span>,</span> <span class='nowrap'>int <span class='param'>y1</span>,</span> <span class='nowrap'>int <span class='param'>x2</span>,</span> <span class='nowrap'>int <span class='param'>y2</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageOpenPolygon&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdPointPtr <span class='param'>p</span>,</span> <span class='nowrap'>int <span class='param'>n</span>,</span> <span class='nowrap'>int <span class='param'>c</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePaletteCopy&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>dst</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>src</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;dst&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePng&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePngCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePngCtxEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>level</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePngEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span>,</span> <span class='nowrap'>int <span class='param'>level</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePngPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePngPtrEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span>,</span> <span class='nowrap'>int <span class='param'>level</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePngToSink&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdSinkPtr <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImagePolygon&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdPointPtr <span class='param'>p</span>,</span> <span class='nowrap'>int <span class='param'>n</span>,</span> <span class='nowrap'>int <span class='param'>c</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageRectangle&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x1</span>,</span> <span class='nowrap'>int <span class='param'>y1</span>,</span> <span class='nowrap'>int <span class='param'>x2</span>,</span> <span class='nowrap'>int <span class='param'>y2</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSaveAlpha&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>saveAlphaArg</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetAntiAliased&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>c</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetAntiAliasedDontBlend&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>c</span>,</span> <span class='nowrap'>int <span class='param'>dont_blend</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetBrush&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>brush</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetClip&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x1</span>,</span> <span class='nowrap'>int <span class='param'>y1</span>,</span> <span class='nowrap'>int <span class='param'>x2</span>,</span> <span class='nowrap'>int <span class='param'>y2</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetPixel&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetStyle&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>style</span>,</span> <span class='nowrap'>int <span class='param'>noOfPixels</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetThickness&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>thickness</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSetTile&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>tile</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSharpen&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>pct</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageSquareToCircle&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>radius</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageString&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdFontPtr <span class='param'>f</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>unsigned char* <span class='param'>s</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageString16&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdFontPtr <span class='param'>f</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>unsigned short* <span class='param'>s</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageStringFT&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImage* <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>brect</span>,</span> <span class='nowrap'>int <span class='param'>fg</span>,</span> <span class='nowrap'>char* <span class='param'>fontlist</span>,</span> <span class='nowrap'>double <span class='param'>ptsize</span>,</span> <span class='nowrap'>double <span class='param'>angle</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>char* <span class='param'>string</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageStringFTCircle&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>cx</span>,</span> <span class='nowrap'>int <span class='param'>cy</span>,</span> <span class='nowrap'>double <span class='param'>radius</span>,</span> <span class='nowrap'>double <span class='param'>textRadius</span>,</span> double <span class='param'>fillPortion</span>, <span class='nowrap'>char* <span class='param'>font</span>,</span> <span class='nowrap'>double <span class='param'>points</span>,</span> <span class='nowrap'>char* <span class='param'>top</span>,</span> <span class='nowrap'>char* <span class='param'>bottom</span>,</span> <span class='nowrap'>int <span class='param'>fgcolor</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageStringFTEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImage* <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>brect</span>,</span> <span class='nowrap'>int <span class='param'>fg</span>,</span> <span class='nowrap'>char* <span class='param'>fontlist</span>,</span> <span class='nowrap'>double <span class='param'>ptsize</span>,</span> <span class='nowrap'>double <span class='param'>angle</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>char* <span class='param'>string</span>,</span> <span class='nowrap'>gdFTStringExtraPtr <span class='param'>strex</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageStringTTF&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImage* <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>brect</span>,</span> <span class='nowrap'>int <span class='param'>fg</span>,</span> <span class='nowrap'>char* <span class='param'>fontlist</span>,</span> <span class='nowrap'>double <span class='param'>ptsize</span>,</span> <span class='nowrap'>double <span class='param'>angle</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>char* <span class='param'>string</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageStringUp&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdFontPtr <span class='param'>f</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>unsigned char* <span class='param'>s</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageStringUp16&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>gdFontPtr <span class='param'>f</span>,</span> <span class='nowrap'>int <span class='param'>x</span>,</span> <span class='nowrap'>int <span class='param'>y</span>,</span> <span class='nowrap'>unsigned short* <span class='param'>s</span>,</span> <span class='nowrap'>int <span class='param'>color</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageTrueColorToPalette&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int <span class='param'>ditherFlag</span>,</span> <span class='nowrap'>int <span class='param'>colorsWanted</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageWBMP&#160;<span class='sym_p'>(&#160;gdImagePtr <span class='focus_p'>image</span>, <span class='nowrap'>int <span class='param'>fg</span>,</span> <span class='nowrap'>FILE* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;image&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageWBMPCtx&#160;<span class='sym_p'>(&#160;gdImagePtr <span class='focus_p'>image</span>, <span class='nowrap'>int <span class='param'>fg</span>,</span> <span class='nowrap'>gdIOCtx* <span class='param'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;image&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+<span class='iname_a'>gdImageWBMPPtr&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='focus_p'>im</span>,</span> <span class='nowrap'>int* <span class='param'>size</span>,</span> <span class='nowrap'>int <span class='param'>fg</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;im&#39; (pointer) has base type &#39;struct gdImageStruct&#39;.</div>
+</div></div>
+<br/><br/></div>
+
+<br/><span class='h_name'>gd_io.h</span><br/>
+<span class="section" onclick="javascript:showContent(this, 'c_16')">
+<span class='extendable'>[+]</span> <span class='ttype'>struct</span> gdIOCtx (1)</span>
+<br/>
+<div id="c_16" style="display:none;">
+<table class='ptable'><tr>
+<th width='2%'></th><th width='47%'>Change</th>
+<th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>Field <b>data</b> has been added to this type.</td><td align='left' valign='top'>This field will not be initialized or used by old client applications.</td></tr>
+</table>
+<span class="section_affected" onclick="javascript:showContent(this, 'c_17')">
+[+] affected symbols (20)</span>
+<div id="c_17" style="display:none;">
+<div class='affected'><span class='iname_a'>gdDPExtractData&#160;<span class='sym_p'>(&#160;struct gdIOCtx* <span class='focus_p'>ctx</span>, <span class='nowrap'>int* <span class='param'>size</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;ctx&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2Ctx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='focus_p'>in</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;in&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGd2PartCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='focus_p'>in</span>,</span> <span class='nowrap'>int <span class='param'>srcx</span>,</span> <span class='nowrap'>int <span class='param'>srcy</span>,</span> <span class='nowrap'>int <span class='param'>w</span>,</span> <span class='nowrap'>int <span class='param'>h</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;in&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGdCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='focus_p'>in</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;in&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromGifCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='focus_p'>in</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;in&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromJpegCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='focus_p'>infile</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;infile&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromPngCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtxPtr <span class='focus_p'>in</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;in&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageCreateFromWBMPCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='focus_p'>infile</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;infile&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageGifAnimAddCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span>,</span> <span class='nowrap'>int <span class='param'>LocalCM</span>,</span> <span class='nowrap'>int <span class='param'>LeftOfs</span>,</span> <span class='nowrap'>int <span class='param'>TopOfs</span>,</span> <span class='nowrap'>int <span class='param'>Delay</span>,</span> <span class='nowrap'>int <span class='param'>Disposal</span>,</span> <span class='nowrap'>gdImagePtr <span class='param'>previm</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageGifAnimBeginCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span>,</span> <span class='nowrap'>int <span class='param'>GlobalCM</span>,</span> <span class='nowrap'>int <span class='param'>Loops</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageGifAnimEndCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span> )</span></span></span><br/><div class='affect'>1st parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageGifCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageJpegCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span>,</span> <span class='nowrap'>int <span class='param'>quality</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImagePngCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImagePngCtxEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>im</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span>,</span> <span class='nowrap'>int <span class='param'>level</span> )</span></span></span><br/><div class='affect'>2nd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdImageWBMPCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='param'>image</span>,</span> <span class='nowrap'>int <span class='param'>fg</span>,</span> <span class='nowrap'>gdIOCtx* <span class='focus_p'>out</span> )</span></span></span><br/><div class='affect'>3rd parameter &#39;out&#39; (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdNewDynamicCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdNewDynamicCtxEx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>int <span class='param'>size</span>,</span> <span class='nowrap'>void* <span class='param'>data</span>,</span> <span class='nowrap'>int <span class='param'>freeFlag</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdNewFileCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>FILE* <span class='param'>p1</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+<span class='iname_a'>gdNewSSCtx&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdSourcePtr <span class='param'>in</span>,</span> <span class='nowrap'>gdSinkPtr <span class='param'>out</span> )</span></span></span><br/><div class='affect'>Return value (pointer) has base type &#39;struct gdIOCtx&#39;.</div>
+</div></div>
+<br/><br/></div>
+
+<br/><a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<a name='Constant_Source_Problems_Low'></a><h2>Problems with Constants, Low Severity (7)</h2><hr/>
+<span class='h_name'>gd.h</span><br/>
+<span class="section" onclick="javascript:showContent(this, 'c_18')">
+<span class='extendable'>[+]</span> BGD_EXPORT_DATA_PROT</span>
+<br/>
+<div id="c_18" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>BGD_EXPORT_DATA_PROT</b> with value <b>extern</b> has been removed.</td><td align='left' valign='top'>Recompilation of a client program may be broken.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_19')">
+<span class='extendable'>[+]</span> DEFAULT_FONTPATH</span>
+<br/>
+<div id="c_19" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>DEFAULT_FONTPATH</b> with value <b>&quot;/usr/X11R6/lib/X11/fonts/TrueType:/usr/X11R6/lib/X11/fonts/truetype:/usr/X11R6/lib/X11/fonts/TTF:/usr/share/fonts/TrueType:/usr/share/fonts/truetype:/usr/openwin/lib/X11/fonts/TrueType:/usr/X11R6/lib/X11/fonts/Type1:/usr/lib/X11/fonts/Type1:/usr/openwin/lib/X11/fonts/Type1&quot;</b> has been removed.</td><td align='left' valign='top'>Recompilation of a client program may be broken.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_20')">
+<span class='extendable'>[+]</span> GD_EXTRA_VERSION</span>
+<br/>
+<div id="c_20" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The value of constant <b>GD_EXTRA_VERSION</b> has been changed from <b>&quot;&quot;</b> to <b>&quot;alpha&quot;</b>.</td><td align='left' valign='top'>Recompilation of a client program may be broken.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_21')">
+<span class='extendable'>[+]</span> GD_MINOR_VERSION</span>
+<br/>
+<div id="c_21" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The value of constant <b>GD_MINOR_VERSION</b> has been changed from <b>0</b> to <b>1</b>.</td><td align='left' valign='top'>Recompilation of a client program may be broken.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_22')">
+<span class='extendable'>[+]</span> GD_RELEASE_VERSION</span>
+<br/>
+<div id="c_22" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The value of constant <b>GD_RELEASE_VERSION</b> has been changed from <b>35</b> to <b>0</b>.</td><td align='left' valign='top'>Recompilation of a client program may be broken.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_23')">
+<span class='extendable'>[+]</span> GD_VERSION_STRING</span>
+<br/>
+<div id="c_23" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The value of constant <b>GD_VERSION_STRING</b> has been changed from <b>&quot;2.0.35&quot;</b> to <b>&quot;2.1.0-alpha&quot;</b>.</td><td align='left' valign='top'>Recompilation of a client program may be broken.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_24')">
+<span class='extendable'>[+]</span> PATHSEPARATOR</span>
+<br/>
+<div id="c_24" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>PATHSEPARATOR</b> with value <b>&quot;:&quot;</b> has been removed.</td><td align='left' valign='top'>Recompilation of a client program may be broken.</td></tr>
+</table><br/></div>
+
+<br/>
+<a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<a name='Other_Source_Changes'></a><a name='Other_Source_Changes_In_Symbols'></a><a name='Other_Source_Changes_In_Interfaces'></a>
+<h2>Other Changes in Symbols (1)</h2><hr/>
+<span class='h_name'>gd.h</span><br/>
+<span class="section" onclick="javascript:showContent(this, 'c_25')">
+<span class='extendable'>[+]</span> gdImageTrueColorToPalette&#160;<span class='sym_p'>(&#160;<span class='nowrap'>gdImagePtr <span class='color_p'>im</span>,</span> <span class='nowrap'>int <span class='color_p'>ditherFlag</span>,</span> <span class='nowrap'>int <span class='color_p'>colorsWanted</span> )</span></span> (1)</span>
+<br/>
+<div id="c_25" style="display:none;">
+
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>Type of return value has been changed from <b>void</b> to <b>int</b>.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/>
+</div>
+<br/><a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<a name='Other_Source_Changes_In_Constants'></a><h2>Other Changes in Constants (7)</h2><hr/>
+<span class='h_name'>gd.h</span><br/>
+<span class="section" onclick="javascript:showContent(this, 'c_26')">
+<span class='extendable'>[+]</span> GD_EPSILON</span>
+<br/>
+<div id="c_26" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>GD_EPSILON</b> with value <b>1e-6</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_27')">
+<span class='extendable'>[+]</span> GD_FALSE</span>
+<br/>
+<div id="c_27" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>GD_FALSE</b> with value <b>0</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_28')">
+<span class='extendable'>[+]</span> GD_FLIP_BOTH</span>
+<br/>
+<div id="c_28" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>GD_FLIP_BOTH</b> with value <b>3</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_29')">
+<span class='extendable'>[+]</span> GD_FLIP_HORINZONTAL</span>
+<br/>
+<div id="c_29" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>GD_FLIP_HORINZONTAL</b> with value <b>1</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_30')">
+<span class='extendable'>[+]</span> GD_FLIP_VERTICAL</span>
+<br/>
+<div id="c_30" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>GD_FLIP_VERTICAL</b> with value <b>2</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_31')">
+<span class='extendable'>[+]</span> GD_TRUE</span>
+<br/>
+<div id="c_31" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>GD_TRUE</b> with value <b>1</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<span class="section" onclick="javascript:showContent(this, 'c_32')">
+<span class='extendable'>[+]</span> M_PI</span>
+<br/>
+<div id="c_32" style="display:none;">
+<table class='ptable'><tr><th width='2%'></th><th width='47%'>Change</th><th>Effect</th></tr><tr><th>1</th><td align='left' valign='top'>The constant <b>M_PI</b> with value <b>3.14159265358979323846</b> has been added.</td><td align='left' valign='top'>No effect.</td></tr>
+</table><br/></div>
+
+<br/>
+<a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<a name='Headers'></a><h2>Header Files (10)</h2><hr/>
+<div class='h_list'>
+entities.h<br/>
+gd.h<br/>
+gd_io.h<br/>
+gdcache.h<br/>
+gdfontg.h<br/>
+gdfontl.h<br/>
+gdfontmb.h<br/>
+gdfonts.h<br/>
+gdfontt.h<br/>
+gdfx.h<br/>
+</div>
+<br/><a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<a name='Libs'></a><h2>Shared Libraries (1)</h2><hr/>
+<div class='lib_list'>
+libgd.so.2.0.0<br/>
+</div>
+<br/><a style='font-size:11px;' href='#Top'>to the top</a><br/>
+<br/><br/><br/></div><div style='width:97%;padding-top:3px;font-size:11px;' align='right'><i>Generated on Mon Apr 22 15:48:42 2013 for <span style='font-weight:bold'>libgd</span> by <a href='http://ispras.linuxbase.org/index.php/ABI_compliance_checker'>ABI Compliance Checker</a> 1.98.8 &#160;<br/>A tool for checking backward compatibility of a C/C++ library API&#160;&#160;</i></div>
+<div style='height:999px;'></div>
+</body></html>

@@ -12,11 +12,7 @@
 #global commit    725ba9de4005144d137d2a7a70f760068fc3d306
 #global short     %%(c=%%{commit}; echo ${c:0:7})
 
-%if 0%{?fedora} < 20 && 0%{?rhel} < 6
-%global  with_webp  0
-%else
 %global  with_webp  1
-%endif
 
 Summary:       A graphics library for quick creation of PNG or JPEG images
 %if 0%{?fedora} >= 20
@@ -24,7 +20,7 @@ Name:          gd
 %else
 Name:          gd-last
 %endif
-Version:       2.2.4
+Version:       2.2.5
 Release:       1%{?prever}%{?short}%{?dist}
 Group:         System Environment/Libraries
 License:       MIT
@@ -38,10 +34,7 @@ Source0:       https://github.com/libgd/libgd/releases/download/gd-%{version}/li
 %endif
 
 Patch1:        gd-2.1.0-multilib.patch
-# https://github.com/libgd/libgd/issues/360
-Patch2:        gd-upstream.patch
 
-BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: freetype-devel
 BuildRequires: fontconfig-devel
 BuildRequires: gettext-devel
@@ -59,11 +52,7 @@ BuildRequires: libtool
 BuildRequires: perl
 BuildRequires: perl-generators
 # for fontconfig/basic test
-%if 0%{?rhel} == 5
-BuildRequires: liberation-fonts
-%else
 BuildRequires: liberation-sans-fonts
-%endif
 
 %if "%{name}" != "gd-last"
 Obsoletes: gd-last <= %{version}
@@ -127,13 +116,13 @@ files for gd, a graphics library for creating PNG and JPEG graphics.
 %prep
 %setup -q -n libgd-%{version}%{?prever:-%{prever}}
 %patch1 -p1 -b .mlib
-%patch2 -p1 -b .upstream
 
 : $(perl config/getver.pl)
 
-# RHEL-5 auto* are too old
-%if 0%{?rhel} == 5 || 0%{?rhel} == 6
+# RHEL-6 auto* are too old
+%if 0%{?rhel} == 6
 sed -e 's/-Werror//' -i configure
+touch tests/Makefile.in
 %else
 : regenerate autotool stuff
 if [ -f configure ]; then
@@ -154,13 +143,16 @@ CFLAGS="$RPM_OPT_FLAGS -DDEFAULT_FONTPATH='\"\
 /usr/share/X11/fonts/Type1:\
 /usr/share/fonts/liberation\"'"
 
-%if 0%{?rhel} == 5
-CFLAGS="$CFLAGS -fno-strict-aliasing"
-%endif
 %ifarch %{ix86}
 # see https://github.com/libgd/libgd/issues/242
 CFLAGS="$CFLAGS -msse -mfpmath=sse"
 %endif
+
+%ifarch aarch64 ppc64 ppc64le s390 s390x
+# workaround for https://bugzilla.redhat.com/show_bug.cgi?id=1359680
+export CFLAGS="$CFLAGS -ffp-contract=off"
+%endif
+
 
 %configure \
     --with-tiff=%{_prefix} \
@@ -179,11 +171,11 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libgd.a
 # See https://github.com/libgd/libgd/issues/359
 XFAIL_TESTS="gdimagegrayscale/basic $XFAIL_TESTS"
 %endif
-%if 0%{?rhel} > 0 && 0%{?rhel} <= 6 || 0%{?fedora} >= 26
+%if 0%{?rhel} > 0 && 0%{?rhel} <= 6
 # See https://github.com/libgd/libgd/issues/363
 XFAIL_TESTS="freetype/bug00132 $XFAIL_TESTS"
 %endif
-%if 0%{?rhel} > 0 && 0%{?rhel} <= 5 || 0%{?fedora} >= 26
+%if 0%{?rhel} > 0 && 0%{?rhel} <= 5
 XFAIL_TESTS="gdimagestringft/gdimagestringft_bbox $XFAIL_TESTS"
 %endif
 
@@ -202,18 +194,15 @@ grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 
 %files
-%defattr(-,root,root,-)
 %{!?_licensedir:%global license %%doc}
 %license COPYING
 %{_libdir}/*.so.*
 
 %files progs
-%defattr(-,root,root,-)
 %{_bindir}/*
 %exclude %{_bindir}/gdlib-config
 
 %files devel
-%defattr(-,root,root,-)
 %{_bindir}/gdlib-config
 %{_includedir}/*
 %{_libdir}/*.so
@@ -221,6 +210,11 @@ grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 
 %changelog
+* Wed Aug 30 2017 Remi Collet <remi@fedoraproject.org> - 2.2.5-1
+- Update to 2.2.5
+- fix double-free in gdImagePngPtr(). CVE-2017-6362
+- fix buffer over-read into uninitialized memory. CVE-2017-7890
+
 * Wed Jan 18 2017 Remi Collet <remi@fedoraproject.org> - 2.2.4-1
 - Update to 2.2.4
 
