@@ -198,9 +198,10 @@ make check
 grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 
-%post -p /sbin/ldconfig
-
+%if 0%{?fedora} < 28 && 0%{?rhel} < 8
+%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
+%endif
 
 
 %files
