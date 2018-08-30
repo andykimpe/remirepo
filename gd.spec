@@ -28,7 +28,7 @@ Name:          gd
 Name:          gd-last
 %endif
 Version:       2.2.5
-Release:       2%{?prever}%{?short}%{?dist}
+Release:       5%{?prever}%{?short}%{?dist}
 Group:         System Environment/Libraries
 License:       MIT
 URL:           http://libgd.github.io/
@@ -43,6 +43,8 @@ Source0:       https://github.com/libgd/libgd/releases/download/gd-%{version}/li
 Patch1:        gd-2.1.0-multilib.patch
 # CVE-2018-5711 - https://github.com/libgd/libgd/commit/a11f47475e6443b7f32d21f2271f28f417e2ac04
 Patch2:        gd-2.2.5-upstream.patch
+# CVE-2018-1000222 - https://github.com/libgd/libgd/commit/ac16bdf2d41724b5a65255d4c28fb0ec46bc42f5
+Patch3:        gd-2.2.5-gdImageBmpPtr-double-free.patch
 
 BuildRequires: freetype-devel
 BuildRequires: fontconfig-devel
@@ -129,6 +131,7 @@ files for gd, a graphics library for creating PNG and JPEG graphics.
 %setup -q -n libgd-%{version}%{?prever:-%{prever}}
 %patch1 -p1 -b .mlib
 %patch2 -p1 -b .upstream
+%patch3 -p1 -b .gdImageBmpPtr-free
 
 : $(perl config/getver.pl)
 
@@ -180,9 +183,11 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libgd.a
 
 
 %check
+%if 0%{?fedora} <= 28 && 0%{?rhel} <= 7
 %ifarch %{ix86}
 # See https://github.com/libgd/libgd/issues/359
 XFAIL_TESTS="gdimagegrayscale/basic $XFAIL_TESTS"
+%endif
 %endif
 %if 0%{?rhel} > 0 && 0%{?rhel} <= 6
 # See https://github.com/libgd/libgd/issues/363
@@ -221,7 +226,11 @@ grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 
 %changelog
-* Mon Mar 26 2018 Marek Skalický <mskalick@redhat.com> - 2.2.5-2
+* Thu Aug 30 2018 mskalick@redhat.com - 2.2.5-5
+- Check return value in gdImageBmpPtr to avoid double free (CVE-2018-1000222)
+- Don't mark gdimagegrayscale/basic test as failing
+
+* Mon Mar 26 2018 Marek Skalický <mskalick@redhat.com> - 2.2.5-3
 - Fix CVE-2018-5711 - Potential infinite loop in gdImageCreateFromGifCtx
 
 * Wed Aug 30 2017 Remi Collet <remi@fedoraproject.org> - 2.2.5-1
