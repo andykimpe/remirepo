@@ -14,12 +14,16 @@
 
 %global  with_webp  1
 
+%if 0%{?fedora} >= 29
+%global  with_liq   1
+%else
 # requested by https://bugzilla.redhat.com/1468338
 # this break gdimagefile/gdnametest:
 #   gdimagefile/gdnametest.c:122: 255 pixels different on /tmp/gdtest.CrpdIb/img.gif
 #   gdimagefile/gdnametest.c:122: 255 pixels different on /tmp/gdtest.CrpdIb/img.GIF
 #   FAIL gdimagefile/gdnametest (exit status: 2)
 %global  with_liq   0
+%endif
 
 Summary:       A graphics library for quick creation of PNG or JPEG images
 %if 0%{?fedora} >= 20
@@ -28,7 +32,7 @@ Name:          gd
 Name:          gd-last
 %endif
 Version:       2.2.5
-Release:       6%{?prever}%{?short}%{?dist}
+Release:       7%{?prever}%{?short}%{?dist}
 Group:         System Environment/Libraries
 License:       MIT
 URL:           http://libgd.github.io/
@@ -116,6 +120,9 @@ Requires: libwebp-devel%{?_isa}
 Requires: libX11-devel%{?_isa}
 Requires: libXpm-devel%{?_isa}
 Requires: zlib-devel%{?_isa}
+%if %{with_liq}
+Requires: libimagequant-devel%{?_isa}
+%endif
 
 %if "%{name}" == "gd-last"
 Conflicts: gd-devel < %{version}
@@ -229,6 +236,9 @@ grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 
 %changelog
+* Fri Sep 07 2018 mskalick@redhat.com - 2.2.5-7
+- Add missing requires to libimagequent-devel
+
 * Thu Aug 30 2018 mskalick@redhat.com - 2.2.5-6
 - Use libimagequant library (RHBZ#1468338)
 
