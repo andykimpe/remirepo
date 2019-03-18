@@ -56,8 +56,11 @@ BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: libtiff-devel
 %if %{with_webp}
-# Ensure we use libwebp5 on EL
-BuildRequires: libwebp-devel > 1
+%if 0%{?rhel} == 7
+BuildRequires: libwebp7-devel
+%else
+BuildRequires: libwebp-devel
+%endif
 %endif
 %if %{with_liq}
 BuildRequires: libimagequant-devel
@@ -235,7 +238,7 @@ grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 %changelog
 * Mon Mar 18 2019 Remi Collet <remi@fedoraproject.org> - 2.2.5-8
-- rebuild using libwebp7
+- rebuild using libwebp7 on EL-7
 
 * Fri Sep 07 2018 mskalick@redhat.com - 2.2.5-7
 - Add missing requires to libimagequent-devel
