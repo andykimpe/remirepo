@@ -14,7 +14,7 @@
 
 %global  with_webp  1
 
-%if 0%{?fedora} >= 29
+%if 0%{?fedora} >= 29 || 0%{?rhel} >= 8
 %global  with_liq   1
 %else
 # requested by https://bugzilla.redhat.com/1468338
@@ -26,14 +26,13 @@
 %endif
 
 Summary:       A graphics library for quick creation of PNG or JPEG images
-%if 0%{?fedora} >= 20
+%if 0%{?fedora} >= 20 || 0%{?rhel} >= 8
 Name:          gd
 %else
 Name:          gd-last
 %endif
 Version:       2.2.5
-Release:       7%{?prever}%{?short}%{?dist}
-Group:         System Environment/Libraries
+Release:       8%{?prever}%{?short}%{?dist}
 License:       MIT
 URL:           http://libgd.github.io/
 %if 0%{?commit:1}
@@ -57,7 +56,8 @@ BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: libtiff-devel
 %if %{with_webp}
-BuildRequires: libwebp-devel
+# Ensure we use libwebp5 on EL
+BuildRequires: libwebp-devel > 1
 %endif
 %if %{with_liq}
 BuildRequires: libimagequant-devel
@@ -92,7 +92,6 @@ browsers. Note that gd is not a paint program.
 %package progs
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Summary:        Utility programs that use libgd
-Group:          Applications/Multimedia
 %if "%{name}" == "gd-last"
 Conflicts:      gd-progs < %{version}
 Provides:       gd-progs = %{version}-%{release}
@@ -107,7 +106,6 @@ graphics library for creating PNG and JPEG images.
 
 %package devel
 Summary:  The development libraries and header files for gd
-Group:    Development/Libraries
 Requires: %{name}%{?_isa} = %{version}-%{release}
 Requires: freetype-devel%{?_isa}
 Requires: fontconfig-devel%{?_isa}
@@ -236,6 +234,9 @@ grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 
 %changelog
+* Mon Mar 18 2019 Remi Collet <remi@fedoraproject.org> - 2.2.5-8
+- rebuild using libwebp7
+
 * Fri Sep 07 2018 mskalick@redhat.com - 2.2.5-7
 - Add missing requires to libimagequent-devel
 
