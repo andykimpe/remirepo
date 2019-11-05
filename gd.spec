@@ -32,7 +32,7 @@ Name:          gd
 Name:          gd-last
 %endif
 Version:       2.2.5
-Release:       8%{?prever}%{?short}%{?dist}
+Release:       10%{?prever}%{?short}%{?dist}
 License:       MIT
 URL:           http://libgd.github.io/
 %if 0%{?commit:1}
@@ -48,6 +48,10 @@ Patch1:        gd-2.1.0-multilib.patch
 Patch2:        gd-2.2.5-upstream.patch
 # CVE-2018-1000222 - https://github.com/libgd/libgd/commit/ac16bdf2d41724b5a65255d4c28fb0ec46bc42f5
 Patch3:        gd-2.2.5-gdImageBmpPtr-double-free.patch
+# CVE-2019-6977
+Patch4:        gd-2.2.5-heap-based-buffer-overflow.patch
+# CVE-2019-6978
+Patch5:        gd-2.2.5-potential-double-free.patch
 
 BuildRequires: freetype-devel
 BuildRequires: fontconfig-devel
@@ -143,6 +147,8 @@ files for gd, a graphics library for creating PNG and JPEG graphics.
 %patch1 -p1 -b .mlib
 %patch2 -p1 -b .upstream
 %patch3 -p1 -b .gdImageBmpPtr-free
+%patch4 -p1
+%patch5 -p1
 
 : $(perl config/getver.pl)
 
@@ -237,6 +243,12 @@ grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 
 %changelog
+* Fri Nov 01 2019 odubaj@redhat.com - 2.2.5-10
+- Fixed heap based buffer overflow in gd_color_match.c:gdImageColorMatch() in libgd as used in imagecolormatch()
+- Resolves: RHBZ#1678104 (CVE-2019-6977)
+- Fixed potential double-free in gdImage*Ptr()
+- Resolves: RHBZ#1671391 (CVE-2019-6978)
+
 * Mon Mar 18 2019 Remi Collet <remi@fedoraproject.org> - 2.2.5-8
 - rebuild using libwebp7 on EL-7
 
