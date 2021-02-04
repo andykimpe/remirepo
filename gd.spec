@@ -12,22 +12,18 @@
 #global commit    725ba9de4005144d137d2a7a70f760068fc3d306
 #global short     %%(c=%%{commit}; echo ${c:0:7})
 
-%global  with_webp  1
+%bcond_without      webp
+%bcond_without      raqm
 
 %if 0%{?fedora} >= 29 || 0%{?rhel} >= 8
-%global  with_liq   1
+%bcond_without      liq
 %else
 # requested by https://bugzilla.redhat.com/1468338
 # this break gdimagefile/gdnametest:
 #   gdimagefile/gdnametest.c:122: 255 pixels different on /tmp/gdtest.CrpdIb/img.gif
 #   gdimagefile/gdnametest.c:122: 255 pixels different on /tmp/gdtest.CrpdIb/img.GIF
 #   FAIL gdimagefile/gdnametest (exit status: 2)
-%global  with_liq   0
-%endif
-%if 0%{?fedora} >= 22 || 0%{?rhel} >= 7
-%global with_raqm 1
-%else
-%global with_raqm 0
+%bcond_with         liq
 %endif
 
 Summary:       A graphics library for quick creation of PNG or JPEG images
@@ -36,8 +32,8 @@ Name:          gd
 %else
 Name:          gd-last
 %endif
-Version:       2.3.0
-Release:       2%{?prever}%{?short}%{?dist}
+Version:       2.3.1
+Release:       1%{?prever}%{?short}%{?dist}
 License:       MIT
 URL:           http://libgd.github.io/
 %if 0%{?commit:1}
@@ -50,25 +46,23 @@ Source0:       https://github.com/libgd/libgd/releases/download/gd-%{version}/li
 # Missing, temporary workaround, fixed upstream for next version
 Source1:       https://raw.githubusercontent.com/libgd/libgd/gd-%{version}/config/getlib.sh
 
-Patch0:        gd-bug615.patch
-
 BuildRequires: freetype-devel
 BuildRequires: fontconfig-devel
 BuildRequires: gettext-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: libtiff-devel
-%if %{with_webp}
+%if %{with webp}
 %if 0%{?rhel} == 7
 BuildRequires: libwebp7-devel
 %else
 BuildRequires: libwebp-devel
 %endif
 %endif
-%if %{with_liq}
+%if %{with liq}
 BuildRequires: libimagequant-devel
 %endif
-%if %{with_raqm}
+%if %{with raqm}
 BuildRequires: libraqm-devel
 %endif
 BuildRequires: libX11-devel
@@ -122,16 +116,16 @@ Requires: fontconfig-devel%{?_isa}
 Requires: libjpeg-devel%{?_isa}
 Requires: libpng-devel%{?_isa}
 Requires: libtiff-devel%{?_isa}
-%if %{with_webp}
+%if %{with webp}
 Requires: libwebp-devel%{?_isa}
 %endif
 Requires: libX11-devel%{?_isa}
 Requires: libXpm-devel%{?_isa}
 Requires: zlib-devel%{?_isa}
-%if %{with_liq}
+%if %{with liq}
 Requires: libimagequant-devel%{?_isa}
 %endif
-%if %{with_raqm}
+%if %{with raqm}
 Requires: libraqm-devel
 %endif
 
@@ -150,16 +144,10 @@ files for gd, a graphics library for creating PNG and JPEG graphics.
 
 %prep
 %setup -q -n libgd-%{version}%{?prever:-%{prever}}
-%patch0 -p1
 install -m 0755 %{SOURCE1} config/
 
 : $(perl config/getver.pl)
 
-# RHEL-6 auto* are too old
-%if 0%{?rhel} == 6
-sed -e 's/-Werror//' -i configure
-touch tests/Makefile.in
-%else
 : regenerate autotool stuff
 if [ -f configure ]; then
    libtoolize --copy --force
@@ -167,7 +155,6 @@ if [ -f configure ]; then
 else
    ./bootstrap.sh
 fi
-%endif
 
 
 %build
@@ -205,18 +192,11 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libgd.a
 %check
 # minor diff in size
 XFAIL_TESTS="gdimagestringft/gdimagestringft_bbox"
-%ifarch s390x
-XFAIL_TESTS="gdimagestring16/gdimagestring16 gdimagestringup16/gdimagestringup16 $XFAIL_TESTS"
-%endif
 %if 0%{?fedora} <= 28 && 0%{?rhel} <= 7
 %ifarch %{ix86}
 # See https://github.com/libgd/libgd/issues/359
 XFAIL_TESTS="gdimagegrayscale/basic $XFAIL_TESTS"
 %endif
-%endif
-%if 0%{?rhel} > 0 && 0%{?rhel} <= 6
-# See https://github.com/libgd/libgd/issues/363
-XFAIL_TESTS="freetype/bug00132 $XFAIL_TESTS"
 %endif
 
 export XFAIL_TESTS
@@ -249,6 +229,15 @@ grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 
 %changelog
+* Thu Feb  4 2021 Remi Collet <remi@remirepo.net> - 2.3.1-1
+- update to 2.3.1 in sync with Fedora
+
+* Wed Feb  3 2021 Filip Januš <fjanus@redhat.com> - 2.3.1-1
+- Upstream released new version 2.3.1
+- patch bug615 is no more needed - fixed by upstream in release
+- gdimagestring16/gdimagestring16 gdimagestringup16/gdimagestringup16 passed on
+  x390s - XFAIL_TEST definition for x390s is no more necessary
+
 * Wed Jul 15 2020 Remi Collet <remi@remirepo.net> - 2.3.0-2
 - fix gdImageStringFT() fails for empty strings
   https://github.com/libgd/libgd/issues/615
