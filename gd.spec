@@ -15,10 +15,11 @@
 %bcond_without      webp
 %bcond_without      raqm
 
-%if 0%{?fedora} >= 33
-# See https://github.com/libgd/libgd/issues/677 - avif test failure
-%bcond_with         avif
+%if 0%{?fedora} >= 34
+%bcond_without      avif
 %else
+# Not available or too old
+# See https://github.com/libgd/libgd/issues/677 - avif test failure
 %bcond_with         avif
 %endif
 
@@ -44,7 +45,7 @@ Name:          gd
 Name:          gd-last
 %endif
 Version:       2.3.2
-Release:       1%{?prever}%{?short}%{?dist}
+Release:       2%{?prever}%{?short}%{?dist}
 License:       MIT
 URL:           http://libgd.github.io/
 %if 0%{?commit:1}
@@ -141,6 +142,12 @@ Requires: libimagequant-devel%{?_isa}
 %endif
 %if %{with raqm}
 Requires: libraqm-devel
+%endif
+%if %{with avif}
+Requires: libavif-devel
+%endif
+%if %{with heif}
+Requires: libheif-devel
 %endif
 
 %if "%{name}" == "gd-last"
@@ -253,6 +260,9 @@ grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 
 %changelog
+* Mon Mar  8 2021 Remi Collet <remi@remirepo.net> - 2.3.2-2
+- enable avif support on Fedora 34
+
 * Mon Mar  8 2021 Remi Collet <remi@remirepo.net> - 2.3.2-1
 - update to 2.3.2
 - open https://github.com/libgd/libgd/issues/677 avif test failure
