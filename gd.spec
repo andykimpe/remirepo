@@ -15,6 +15,17 @@
 %bcond_without      webp
 %bcond_without      raqm
 
+%if 0%{?fedora} >= 33
+# See https://github.com/libgd/libgd/issues/677 - avif test failure
+%bcond_with         avif
+%else
+%bcond_with         avif
+%endif
+
+# Disabled as only in rpmfusion
+# Also see https://github.com/libgd/libgd/issues/678 - heif segfault
+%bcond_with         heif
+
 %if 0%{?fedora} >= 29 || 0%{?rhel} >= 8
 %bcond_without      liq
 %else
@@ -32,7 +43,7 @@ Name:          gd
 %else
 Name:          gd-last
 %endif
-Version:       2.3.1
+Version:       2.3.2
 Release:       1%{?prever}%{?short}%{?dist}
 License:       MIT
 URL:           http://libgd.github.io/
@@ -65,6 +76,12 @@ BuildRequires: libimagequant-devel
 %if %{with raqm}
 BuildRequires: libraqm-devel
 %endif
+%if %{with avif}
+BuildRequires: libavif-devel
+%endif
+%if %{with heif}
+BuildRequires: libheif-devel
+%endif
 BuildRequires: libX11-devel
 BuildRequires: libXpm-devel
 BuildRequires: zlib-devel
@@ -75,9 +92,6 @@ BuildRequires: perl-generators
 BuildRequires: perl(FindBin)
 # for fontconfig/basic test
 BuildRequires: liberation-sans-fonts
-%if 0%{?fedora} >= 29
-BuildRequires: libimagequant-devel
-%endif
 
 %if "%{name}" != "gd-last"
 Obsoletes: gd-last <= %{version}
@@ -179,6 +193,16 @@ export CFLAGS="$CFLAGS -ffp-contract=off"
 
 %configure \
     --with-tiff=%{_prefix} \
+%if %{with avif}
+    --with-avif \
+%else
+    --without-avif \
+%endif
+%if %{with heif}
+    --with-heif \
+%else
+    --without-heif \
+%endif
     --disable-rpath
 make %{?_smp_mflags}
 
@@ -229,6 +253,11 @@ grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 
 %changelog
+* Mon Mar  8 2021 Remi Collet <remi@remirepo.net> - 2.3.2-1
+- update to 2.3.2
+- open https://github.com/libgd/libgd/issues/677 avif test failure
+- open https://github.com/libgd/libgd/issues/678 heif segfault
+
 * Thu Feb  4 2021 Remi Collet <remi@remirepo.net> - 2.3.1-1
 - update to 2.3.1 in sync with Fedora
 
