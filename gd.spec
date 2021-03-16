@@ -56,7 +56,7 @@ Source0:       libgd-%{version}-%{commit}.tgz
 Source0:       https://github.com/libgd/libgd/releases/download/gd-%{version}/libgd-%{version}.tar.xz
 %endif
 # Missing, temporary workaround, fixed upstream for next version
-Source1:       https://raw.githubusercontent.com/libgd/libgd/gd-%{version}/config/getlib.sh
+Source1:       https://raw.githubusercontent.com/libgd/libgd/gd-%{version}/tests/heif/label.heic
 
 BuildRequires: freetype-devel
 BuildRequires: fontconfig-devel
@@ -165,7 +165,7 @@ files for gd, a graphics library for creating PNG and JPEG graphics.
 
 %prep
 %setup -q -n libgd-%{version}%{?prever:-%{prever}}
-install -m 0755 %{SOURCE1} config/
+install -m 0644 %{SOURCE1} tests/heif/
 
 : $(perl config/getver.pl)
 
