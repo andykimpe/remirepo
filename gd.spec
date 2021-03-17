@@ -15,7 +15,7 @@
 %bcond_without      webp
 %bcond_without      raqm
 
-%if 0%{?fedora} >= 34
+%if 0%{?fedora} >= 33
 %bcond_without      avif
 %else
 # Not available or too old
@@ -45,7 +45,7 @@ Name:          gd
 Name:          gd-last
 %endif
 Version:       2.3.2
-Release:       2%{?prever}%{?short}%{?dist}
+Release:       3%{?prever}%{?short}%{?dist}
 License:       MIT
 URL:           http://libgd.github.io/
 %if 0%{?commit:1}
@@ -57,6 +57,8 @@ Source0:       https://github.com/libgd/libgd/releases/download/gd-%{version}/li
 %endif
 # Missing, temporary workaround, fixed upstream for next version
 Source1:       https://raw.githubusercontent.com/libgd/libgd/gd-%{version}/tests/heif/label.heic
+
+Patch0:        libgd-upstream.patch
 
 BuildRequires: freetype-devel
 BuildRequires: fontconfig-devel
@@ -78,10 +80,10 @@ BuildRequires: libimagequant-devel
 BuildRequires: libraqm-devel
 %endif
 %if %{with avif}
-BuildRequires: libavif-devel
+BuildRequires: libavif-devel >= 0.8.2
 %endif
 %if %{with heif}
-BuildRequires: libheif-devel
+BuildRequires: libheif-devel >= 1.7.0
 %endif
 BuildRequires: libX11-devel
 BuildRequires: libXpm-devel
@@ -166,6 +168,7 @@ files for gd, a graphics library for creating PNG and JPEG graphics.
 %prep
 %setup -q -n libgd-%{version}%{?prever:-%{prever}}
 install -m 0644 %{SOURCE1} tests/heif/
+%patch0 -p1 -b .up
 
 : $(perl config/getver.pl)
 
@@ -277,6 +280,9 @@ grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 
 %changelog
+* Wed Mar 17 2021 Remi Collet <remi@remirepo.net> - 2.3.2-3
+- enable avif support on Fedora 33+
+
 * Mon Mar  8 2021 Remi Collet <remi@remirepo.net> - 2.3.2-2
 - enable avif support on Fedora 34
 
