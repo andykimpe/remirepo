@@ -139,3 +139,58 @@ index cf94c70a..20906618 100644
  
  	if (im == NULL)
  		return 1;
+From d967ef78ffbb9f21090dcf058617b2b0677d9830 Mon Sep 17 00:00:00 2001
+From: Remi Collet <remi@remirepo.net>
+Date: Wed, 17 Mar 2021 14:42:22 +0100
+Subject: [PATCH] fix test when libraqm is used
+
+---
+ tests/gdimagestringft/gdimagestringft_bbox.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/tests/gdimagestringft/gdimagestringft_bbox.c b/tests/gdimagestringft/gdimagestringft_bbox.c
+index 5d57bc7b..a4b83eb8 100644
+--- a/tests/gdimagestringft/gdimagestringft_bbox.c
++++ b/tests/gdimagestringft/gdimagestringft_bbox.c
+@@ -1,4 +1,5 @@
+ #include "gd.h"
++#include "config.h"
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <math.h>
+@@ -11,19 +12,35 @@ static int EXPECT[16][8] = {
+ 	{500, 400, 628, 400, 628, 376, 500, 376},
+ 	{492, 362, 611, 312, 601, 290, 483, 339},
+ 	{470, 330, 561, 239, 544, 221, 453, 312},
++#ifdef HAVE_LIBRAQM
++	{437, 308, 486, 190, 464, 180, 414, 299},
++#else
+ 	{437, 308, 486, 189, 464, 180, 414, 299},
++#endif
+ 	{400, 301, 400, 173, 376, 173, 376, 301},
+ 	{363, 309, 313, 190, 291, 200, 340, 318},
+ 	{332, 331, 241, 240, 223, 257, 314, 348},
++#ifdef HAVE_LIBRAQM
++	{311, 363, 193, 314, 183, 336, 302, 386},
++#else
+ 	{311, 363, 192, 314, 183, 336, 302, 386},
++#endif
+ 	{304, 399, 176, 399, 176, 423, 304, 423},
+ 	{312, 435, 193, 485, 203, 507, 321, 458},
+ 	{333, 465, 242, 556, 259, 574, 350, 483},
++#ifdef HAVE_LIBRAQM
++	{364, 486, 315, 604, 337, 614, 387, 495},
++#else
+ 	{364, 486, 315, 605, 337, 614, 387, 495},
++#endif
+ 	{399, 492, 399, 620, 423, 620, 423, 492},
+ 	{434, 484, 484, 603, 506, 593, 457, 475},
+ 	{463, 464, 554, 555, 572, 538, 481, 447},
++#ifdef HAVE_LIBRAQM
++	{483, 434, 601, 483, 611, 461, 492, 411},
++#else
+ 	{483, 434, 602, 483, 611, 461, 492, 411},
++#endif
+ };
+ 
+ int main()

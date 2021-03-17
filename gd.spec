@@ -239,17 +239,13 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libgd.a
 
 
 %check
-# minor diff in size
-%if %{with raqm}
-XFAIL_TESTS="gdimagestringft/gdimagestringft_bbox"
-%endif
+XFAIL_TESTS=""
 %if 0%{?fedora} <= 28 && 0%{?rhel} <= 7
 %ifarch %{ix86}
 # See https://github.com/libgd/libgd/issues/359
 XFAIL_TESTS="gdimagegrayscale/basic $XFAIL_TESTS"
 %endif
 %endif
-
 export XFAIL_TESTS
 
 : Upstream test suite
