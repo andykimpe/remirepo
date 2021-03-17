@@ -200,6 +200,21 @@ export CFLAGS="$CFLAGS -ffp-contract=off"
 
 %configure \
     --with-tiff=%{_prefix} \
+%if %{with raqm}
+    --with-raqm \
+%else
+    --without-raqm \
+%endif
+%if %{with liq}
+    --with-liq \
+%else
+    --without-liq \
+%endif
+%if %{with webp}
+    --with-webp \
+%else
+    --without-webp \
+%endif
 %if %{with avif}
     --with-avif \
 %else
@@ -222,7 +237,9 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/libgd.a
 
 %check
 # minor diff in size
+%if %{with raqm}
 XFAIL_TESTS="gdimagestringft/gdimagestringft_bbox"
+%endif
 %if 0%{?fedora} <= 28 && 0%{?rhel} <= 7
 %ifarch %{ix86}
 # See https://github.com/libgd/libgd/issues/359
