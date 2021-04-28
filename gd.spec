@@ -45,7 +45,7 @@ Name:          gd
 Name:          gd-last
 %endif
 Version:       2.3.2
-Release:       3%{?prever}%{?short}%{?dist}
+Release:       4%{?prever}%{?short}%{?dist}
 License:       MIT
 URL:           http://libgd.github.io/
 %if 0%{?commit:1}
@@ -276,6 +276,9 @@ grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 
 %changelog
+* Wed Apr 28 2021 Remi Collet <remi@remirepo.net> - 2.3.2-4
+- rebuild for libavif new soname on Fedora 34
+
 * Wed Mar 17 2021 Remi Collet <remi@remirepo.net> - 2.3.2-3
 - enable avif support on Fedora 33+
 
