@@ -134,7 +134,11 @@ Requires: libjpeg-devel%{?_isa}
 Requires: libpng-devel%{?_isa}
 Requires: libtiff-devel%{?_isa}
 %if %{with webp}
+%if 0%{?rhel} == 7
+Requires: libwebp7-devel%{?_isa}
+%else
 Requires: libwebp-devel%{?_isa}
+%endif
 %endif
 Requires: libX11-devel%{?_isa}
 Requires: libXpm-devel%{?_isa}
